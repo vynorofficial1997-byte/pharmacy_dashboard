@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pharmacy Login</title>
+
+   <style>
+    /* =========================================
+   PHARMACY LOGIN PAGE
+   ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+
+    background: linear-gradient(
+        180deg,
+        #983434 0%,
+        #d74e4e 50%,
+        #983434 100%
+    );
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo-container {
+    width: 110px;
+    height: 110px;
+
+    margin-top: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 110px;
+    height: 110px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* =========================================
+   LOGIN CARD
+   ========================================= */
+
+.login-card {
+    width: calc(100% - 96px);
+    height: 630px;
+
+    margin-top: 51px;
+
+    background: #f3cccc;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 3px 7px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* =========================================
+   LOGIN CONTENT
+   ========================================= */
+
+.login-content {
+    width: 582px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+
+/* =========================================
+   HEADING
+   ========================================= */
+
+.login-content h1 {
+    margin-left: 5px;
+    margin-bottom: 12px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 34px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    color: #414141;
+}
+
+
+/* =========================================
+   PHONE ROW
+   ========================================= */
+
+.phone-row {
+    width: 582px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+
+/* =========================================
+   COUNTRY CODE
+   ========================================= */
+
+.country-code {
+    width: 103px;
+    height: 73px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 23px;
+    font-weight: 700;
+
+    color: #858585;
+}
+
+
+/* =========================================
+   PHONE INPUT
+   ========================================= */
+
+.phone-row input {
+    width: 466px;
+    height: 73px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    padding: 0 18px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 24px;
+    font-weight: 500;
+
+    color: #333333;
+}
+
+
+/* Remove browser number spinner if type is changed */
+.phone-row input::-webkit-outer-spin-button,
+.phone-row input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* =========================================
+   INPUT FOCUS
+   ========================================= */
+
+.phone-row input:focus {
+    outline: none;
+
+    border-color: #cccccc;
+
+    box-shadow: none;
+}
+
+
+/* =========================================
+   SEND OTP BUTTON
+   ========================================= */
+
+.send-otp-btn {
+    width: 270px;
+    height: 82px;
+
+    margin-top: 52px;
+
+    align-self: center;
+
+    border: none;
+    border-radius: 50px;
+
+    background: #9d3838;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: none;
+}
+
+
+/* Keep button visually unchanged */
+.send-otp-btn:hover {
+    background: #9d3838;
+}
+
+.send-otp-btn:active {
+    background: #9d3838;
+}
+
+.send-otp-btn:focus {
+    outline: none;
+}
+
+
+/* =========================================
+   SIGNUP SECTION
+   ========================================= */
+
+.signup-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 22px;
+}
+
+
+/* =========================================
+   SIGNUP TEXT
+   ========================================= */
+
+.signup-section p {
+    margin: 0 0 25px 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 24px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    color: #f3cccc;
+}
+
+
+/* =========================================
+   SIGNUP BUTTON
+   ========================================= */
+
+.signup-btn {
+    width: 384px;
+    height: 78px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #f3cccc;
+
+    color: #414141;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: none;
+}
+
+
+/* Keep signup button visually unchanged */
+.signup-btn:hover {
+    background: #f3cccc;
+}
+
+.signup-btn:active {
+    background: #f3cccc;
+}
+
+.signup-btn:focus {
+    outline: none;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .login-card {
+        width: calc(100% - 40px);
+        height: 600px;
+    }
+
+    .login-content {
+        width: 80%;
+        max-width: 582px;
+    }
+
+    .phone-row {
+        width: 100%;
+    }
+
+    .country-code {
+        width: 103px;
+        flex-shrink: 0;
+    }
+
+    .phone-row input {
+        width: auto;
+        flex: 1;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .logo-container,
+    .logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .logo-container {
+        margin-top: 30px;
+    }
+
+    .login-card {
+        width: calc(100% - 30px);
+        height: 500px;
+
+        margin-top: 35px;
+    }
+
+    .login-content {
+        width: 85%;
+    }
+
+    .login-content h1 {
+        font-size: 26px;
+    }
+
+    .phone-row {
+        gap: 8px;
+    }
+
+    .country-code {
+        width: 85px;
+        height: 60px;
+        font-size: 18px;
+    }
+
+    .phone-row input {
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .send-otp-btn {
+        width: 220px;
+        height: 65px;
+
+        margin-top: 40px;
+
+        font-size: 25px;
+    }
+
+    .signup-section {
+        margin-top: 20px;
+    }
+
+    .signup-section p {
+        font-size: 19px;
+        margin-bottom: 20px;
+    }
+
+    .signup-btn {
+        width: 300px;
+        height: 65px;
+
+        font-size: 27px;
+    }
+}
+.account-link {
+    cursor: pointer;
+}
+
+.account-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   SPLASH SCREEN (shown first, covers the page)
+   ========================================= */
+
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+
+    width: 100vw;
+    height: 100vh;
+
+    /* Top & Bottom Dark
+       Middle Slightly Light */
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #733333 0%,
+            #682929 28%,
+            #5B1D1D 62%,
+            #481515 100%
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* AUSWAY LOGO */
+
+.ausway-logo {
+    width: 290px;
+    height: 290px;
+
+    object-fit: contain;
+
+    display: block;
+}
+
+
+/* Tablet */
+
+@media (max-width: 768px) {
+
+    .ausway-logo {
+        width: 230px;
+        height: 230px;
+    }
+
+}
+
+
+/* Mobile */
+
+@media (max-width: 480px) {
+
+    .ausway-logo {
+        width: 190px;
+        height: 190px;
+    }
+
+}
+
+
+/* =========================================
+   PAGE SWITCHING (Phone page <-> OTP page)
+   Wrappers behave exactly like direct <body> children
+   ========================================= */
+
+#phonePage,
+#otpPage {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#otpPage {
+    display: none;
+}
+
+
+/* =========================================
+   OTP PAGE (all rules scoped to #otpPage)
+   ========================================= */
+
+#otpPage .otp-card {
+    width: calc(100% - 108px);
+    height: 630px;
+
+    margin-top: 51px;
+
+    background: #f3cccc;
+
+    border-radius: 9px;
+
+    box-shadow:
+        0 3px 7px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#otpPage .otp-content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#otpPage .otp-content h1 {
+    margin: 0;
+
+    text-align: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 29px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    color: #000000;
+}
+
+#otpPage .otp-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    margin-top: 104px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#otpPage .otp-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 18px;
+
+    margin: 0;
+}
+
+#otpPage .otp-input {
+    width: 46px;
+    height: 46px;
+
+    background: #ffffff;
+
+    border: none;
+
+    border-radius: 6px;
+
+    outline: none;
+
+    text-align: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    color: #333333;
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#otpPage .otp-input:focus {
+    outline: none;
+
+    border: none;
+
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#otpPage .otp-eye-btn {
+    position: absolute;
+
+    left: calc(50% + 205px);
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 42px;
+    height: 42px;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #555555;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    outline: none;
+}
+
+#otpPage .otp-eye-btn svg {
+    width: 23px;
+    height: 23px;
+
+    display: block;
+}
+
+#otpPage .enter-btn {
+    width: 176px;
+    height: 57px;
+
+    margin-top: 48px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background: #9d3838;
+
+    color: #ffffff;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    outline: none;
+}
+
+#otpPage .enter-btn:hover {
+    background: #9d3838;
+}
+
+#otpPage .enter-btn:active {
+    background: #9d3838;
+}
+
+@media (max-width: 700px) {
+
+    #otpPage .logo-container, #otpPage .logo {
+        width: 90px;
+        height: 90px;
+    }
+
+    #otpPage .logo-container {
+        margin-top: 30px;
+    }
+
+    #otpPage .otp-card {
+        width: calc(100% - 30px);
+        height: 550px;
+
+        margin-top: 35px;
+    }
+
+    #otpPage .otp-content h1 {
+        font-size: 24px;
+    }
+
+    #otpPage .otp-wrapper {
+        margin-top: 80px;
+    }
+
+    #otpPage .otp-container {
+        gap: 9px;
+    }
+
+    #otpPage .otp-input {
+        width: 40px;
+        height: 40px;
+
+        font-size: 20px;
+    }
+
+    #otpPage .otp-eye-btn {
+        left: calc(50% + 170px);
+    }
+
+    #otpPage .enter-btn {
+        width: 160px;
+        height: 52px;
+
+        font-size: 27px;
+    }
+}
+
+   </style>
+</head>
+
+<body>
+
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+
+        <img
+            src="AUSWAY LOGO 2.png"
+            alt="AUSWAY Logo"
+            class="ausway-logo"
+        >
+
+    </div>
+
+    <!-- Phone Number Page -->
+    <div id="phonePage">
+
+    <!-- Logo -->
+    <div class="logo-container">
+        <img src="AUSWAY LOGO 2.png" alt="AUSWAY Logo" class="logo">
+    </div>
+
+    <!-- Main Login Card -->
+    <div class="login-card">
+
+        <div class="login-content">
+
+            <!-- Phone Number Heading -->
+            <h1>Enter Phone no.</h1>
+
+            <!-- Phone Number -->
+            <div class="phone-row">
+
+                <div class="country-code">
+                    + 91
+                </div>
+
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    maxlength="10"
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <!-- Send OTP -->
+            <button
+                type="button"
+                class="send-otp-btn"
+                id="sendOtpBtn"
+            >
+                SEND OTP
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Sign Up Section -->
+    <div class="signup-section">
+
+        <p class="account-link" id="accountLink">Don’t have an account?</p>
+
+        <button
+            type="button"
+            class="signup-btn"
+            id="signupBtn"
+        >
+            Sign-up
+        </button>
+
+    </div>
+
+    </div>
+    <!-- /Phone Number Page -->
+
+
+    <!-- OTP Page -->
+    <div id="otpPage">
+
+    <!-- =========================================
+         LOGO
+         ========================================= -->
+
+    <div class="logo-container">
+        <img src="AUSWAY LOGO 2.png" alt="AUSWAY Logo" class="logo">
+    </div>
+
+
+    <!-- =========================================
+         OTP CARD
+         ========================================= -->
+
+    <div class="otp-card">
+
+        <div class="otp-content">
+
+            <!-- HEADING -->
+
+            <h1>
+                Enter the OTP that has sent<br>
+                to your Phone Number
+            </h1>
+
+
+            <!-- =====================================
+                 OTP AREA
+                 ===================================== -->
+
+            <div class="otp-wrapper">
+
+                <div class="otp-container">
+
+                    <input
+                        type="password"
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                        autocomplete="one-time-code"
+                    >
+
+                    <input
+                        type="password"
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                    >
+
+                    <input
+                        type="password"
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                    >
+
+                    <input
+                        type="password"
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                    >
+
+                    <input
+                        type="password"
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                    >
+
+                    <input
+                        type="password"
+                        class="otp-input"
+                        maxlength="1"
+                        inputmode="numeric"
+                    >
+
+                </div>
+
+
+                <!-- EYE BUTTON -->
+
+                <button
+                    type="button"
+                    class="otp-eye-btn"
+                    id="toggleOtp"
+                    aria-label="Show OTP"
+                >
+
+                    <svg
+                        id="eyeIcon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+
+                        <path
+                            d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z">
+                        </path>
+
+                        <circle
+                            cx="12"
+                            cy="12"
+                            r="3">
+                        </circle>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+
+            <!-- =====================================
+                 ENTER BUTTON
+                 ===================================== -->
+
+            <button
+                type="button"
+                class="enter-btn"
+                id="enterBtn"
+            >
+                ENTER
+            </button>
+
+        </div>
+
+    </div>
+
+
+    
+
+    </div>
+    <!-- /OTP Page -->
+
+    <script >
+     /* =========================================
+   PHARMACY LOGIN JAVASCRIPT
+   ========================================= */
+
+const phoneNumber = document.getElementById("phoneNumber");
+const sendOtpBtn = document.getElementById("sendOtpBtn");
+const signupBtn = document.getElementById("signupBtn");
+
+
+/* =========================================
+   ALLOW ONLY NUMBERS
+   ========================================= */
+
+phoneNumber.addEventListener("input", function () {
+
+    this.value = this.value.replace(/\D/g, "");
+
+});
+
+
+/* =========================================
+   SEND OTP
+   ========================================= */
+
+sendOtpBtn.addEventListener("click", function () {
+
+    const phone = phoneNumber.value.trim();
+
+    if (phone.length === 0) {
+        alert("Please enter your phone number.");
+        return;
+    }
+
+    if (phone.length !== 10) {
+        alert("Please enter a valid 10-digit phone number.");
+        return;
+    }
+
+    /*
+       OTP BACKEND WILL BE CONNECTED HERE.
+
+       Example:
+
+       fetch("/api/send-otp", {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({
+               phone: "+91" + phone
+           })
+       });
+    */
+
+    /* Show OTP page */
+    document.getElementById("phonePage").style.display = "none";
+    document.getElementById("otpPage").style.display = "flex";
+    document.querySelector(".otp-input").focus();
+
+});
+
+
+/* =========================================
+   SIGN UP
+   ========================================= */
+
+signupBtn.addEventListener("click", function () {
+
+    /*
+       Change this later to the actual
+       pharmacy registration page.
+
+       Example:
+       window.location.href = "signup.html";
+    */
+
+    window.location.href = "signup.html";
+
+});
+document.getElementById("accountLink").addEventListener("click", function () {
+    window.location.href = "signup.html";
+});   
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+    console.log("AUSWAY Splash Screen Loaded");
+
+});
+
+        /* =========================================
+           SPLASH → PHONE-NUMBER PAGE (after 3 seconds)
+           ========================================= */
+
+        setTimeout(function () {
+            document.getElementById("splashScreen").style.display = "none";
+        }, 3000);
+    </script>
+
+    <script>
+/* =========================================
+   OTP ELEMENTS
+   ========================================= */
+
+const otpInputs = document.querySelectorAll(".otp-input");
+const enterBtn = document.getElementById("enterBtn");
+const toggleOtp = document.getElementById("toggleOtp");
+const eyeIcon = document.getElementById("eyeIcon");
+
+
+/* =========================================
+   OTP VISIBILITY STATE
+   ========================================= */
+
+let otpVisible = false;
+
+
+/* =========================================
+   OTP INPUT
+   ========================================= */
+
+otpInputs.forEach((input, index) => {
+
+    /* -----------------------------------------
+       NORMAL TYPING
+       ----------------------------------------- */
+
+    input.addEventListener("input", function (event) {
+
+        let value = this.value.replace(/\D/g, "");
+
+        /* Keep only one digit */
+        if (value.length > 1) {
+            value = value.charAt(0);
+        }
+
+        this.value = value;
+
+
+        /* Move automatically to next box */
+        if (
+            value.length === 1 &&
+            index < otpInputs.length - 1
+        ) {
+            otpInputs[index + 1].focus();
+        }
+
+    });
+
+
+    /* -----------------------------------------
+       KEYBOARD HANDLING
+       ----------------------------------------- */
+
+    input.addEventListener("keydown", function (event) {
+
+        /* BACKSPACE */
+
+        if (event.key === "Backspace") {
+
+            if (this.value === "" && index > 0) {
+
+                otpInputs[index - 1].focus();
+
+            }
+
+            return;
+        }
+
+
+        /* LEFT ARROW */
+
+        if (event.key === "ArrowLeft") {
+
+            if (index > 0) {
+
+                otpInputs[index - 1].focus();
+
+            }
+
+            event.preventDefault();
+
+            return;
+        }
+
+
+        /* RIGHT ARROW */
+
+        if (event.key === "ArrowRight") {
+
+            if (index < otpInputs.length - 1) {
+
+                otpInputs[index + 1].focus();
+
+            }
+
+            event.preventDefault();
+
+            return;
+        }
+
+    });
+
+
+    /* -----------------------------------------
+       PASTE OTP
+       ----------------------------------------- */
+
+    input.addEventListener("paste", function (event) {
+
+        event.preventDefault();
+
+        const pastedText =
+            event.clipboardData
+                .getData("text")
+                .replace(/\D/g, "")
+                .slice(0, 6);
+
+
+        if (pastedText.length === 0) {
+            return;
+        }
+
+
+        /* Fill OTP boxes */
+
+        pastedText.split("").forEach((digit, i) => {
+
+            if (otpInputs[i]) {
+                otpInputs[i].value = digit;
+            }
+
+        });
+
+
+        /* Focus next empty box */
+
+        if (pastedText.length < 6) {
+
+            otpInputs[pastedText.length].focus();
+
+        } else {
+
+            otpInputs[5].focus();
+
+        }
+
+    });
+
+});
+
+
+/* =========================================
+   EYE / EYE-SLASH TOGGLE
+   ========================================= */
+
+toggleOtp.addEventListener("click", function (event) {
+
+    event.preventDefault();
+
+    event.stopPropagation();
+
+
+    otpVisible = !otpVisible;
+
+
+    /* Change all OTP inputs */
+
+    otpInputs.forEach(function (input) {
+
+        input.type = otpVisible
+            ? "text"
+            : "password";
+
+    });
+
+
+    /* -----------------------------------------
+       VISIBLE = EYE SLASH
+       ----------------------------------------- */
+
+    if (otpVisible) {
+
+        eyeIcon.innerHTML = `
+            <path d="M3 3l18 18"></path>
+
+            <path
+                d="M10.6 10.6
+                   a2 2 0 0 0
+                   2.8 2.8">
+            </path>
+
+            <path
+                d="M9.9 4.2
+                   A10.8 10.8 0 0 1
+                   12 4
+                   c7 0 10 8 10 8
+                   a17.5 17.5 0 0 1
+                   -3.2 4.5">
+            </path>
+
+            <path
+                d="M6.6 6.6
+                   C3.8 8.5 2 12 2 12
+                   s3.5 8 10 8
+                   a10.8 10.8 0 0 0
+                   3.1-.5">
+            </path>
+        `;
+
+        toggleOtp.setAttribute(
+            "aria-label",
+            "Hide OTP"
+        );
+
+    }
+
+
+    /* -----------------------------------------
+       HIDDEN = NORMAL EYE
+       ----------------------------------------- */
+
+    else {
+
+        eyeIcon.innerHTML = `
+            <path
+                d="M2 12
+                   s3.5-7 10-7
+                   10 7 10 7
+                   -3.5 7-10 7
+                   S2 12 2 12z">
+            </path>
+
+            <circle
+                cx="12"
+                cy="12"
+                r="3">
+            </circle>
+        `;
+
+        toggleOtp.setAttribute(
+            "aria-label",
+            "Show OTP"
+        );
+
+    }
+
+});
+
+
+/* =========================================
+   ENTER BUTTON
+   ========================================= */
+
+enterBtn.addEventListener("click", function () {
+
+    let otp = "";
+
+
+    otpInputs.forEach(function (input) {
+
+        otp += input.value;
+
+    });
+
+
+    /* Check complete OTP */
+
+    if (otp.length !== 6) {
+
+        alert(
+            "Please enter the complete 6-digit OTP."
+        );
+
+        /* Focus first empty box */
+
+        for (let i = 0; i < otpInputs.length; i++) {
+
+            if (otpInputs[i].value === "") {
+
+                otpInputs[i].focus();
+
+                break;
+            }
+
+        }
+
+        return;
+    }
+
+
+    /* =====================================
+       OTP IS COMPLETE
+       ===================================== */
+
+    console.log("Entered OTP:", otp);
+
+
+    /*
+       REAL OTP VERIFICATION WILL BE
+       CONNECTED HERE LATER.
+
+       Example:
+
+       fetch("/api/verify-otp", {
+           method: "POST",
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify({
+               otp: otp
+           })
+       });
+    */
+
+
+    alert("OTP entered: " + otp);
+
+});
+</script>
+
+</body>
+</html>
