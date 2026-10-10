@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AUSWAY - Pharmacy Registration</title>
+
+    <style>
+        /* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #963232 0%,
+            #d84c4c 50%,
+            #8e2d2d 100%
+        );
+
+    padding-top: 30px;
+    padding-bottom: 25px;
+
+    color: #333;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.top-logo {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+
+.top-logo img {
+
+    width: 70px;
+
+    height: 70px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   MAIN CARD
+========================================= */
+
+.registration-card {
+
+    width: calc(100% - 50px);
+
+    max-width: 1120px;
+
+    margin: auto;
+
+    background: #f3cccc;
+
+    border-radius: 7px;
+
+    padding: 75px 90px 40px;
+
+    min-height: 1550px;
+
+}
+
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.form-section {
+
+    width: 100%;
+
+    margin-bottom: 16px;
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.form-section > label {
+
+    display: block;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    color: #3d3d3d;
+
+    margin-bottom: 7px;
+}
+
+
+/* =========================================
+   NORMAL INPUT
+========================================= */
+
+.form-section > input[type="text"],
+.form-section > input[type="tel"] {
+
+    width: 100%;
+
+    height: 40px;
+
+    border: none;
+
+    outline: none;
+
+    border-radius: 3px;
+
+    background: #ffffff;
+
+    padding: 0 20px;
+
+    font-size: 16px;
+
+    color: #333;
+}
+
+
+.form-section input::placeholder {
+
+    color: #999;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   GENDER
+========================================= */
+
+.gender-container {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 85%;
+
+    margin: 18px auto 0;
+}
+
+
+.gender-item {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.gender-item input[type="radio"] {
+
+    appearance: none;
+
+    width: 32px;
+
+    height: 32px;
+
+    background: #ffffff;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+
+.gender-item input[type="radio"]:checked {
+
+    background: #a83a3a;
+
+    box-shadow:
+        inset 0 0 0 8px #ffffff;
+}
+
+
+.gender-item label {
+
+    font-size: 16px;
+
+    color: #746868;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   DATE OF BIRTH
+========================================= */
+
+.dob-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-left: 50px;
+
+    margin-top: 30px;
+}
+
+
+.dob-container input {
+
+    width: 100px;
+
+    height: 40px;
+
+    background: white;
+
+    border: none;
+
+    border-radius: 3px;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 16px;
+}
+
+
+.dob-container input:last-child {
+
+    width: 155px;
+}
+
+
+.dob-container span {
+
+    font-size: 35px;
+
+    color: #333;
+
+    font-weight: 300;
+}
+
+
+/* =========================================
+   EMERGENCY CONTACT
+========================================= */
+
+.emergency-section {
+
+    margin-top: 45px;
+}
+
+
+/* =========================================
+   ADDRESS
+========================================= */
+
+.permanent-section {
+
+    margin-top: 48px;
+}
+
+
+.form-section > input + input {
+
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   SAME ADDRESS
+========================================= */
+
+.same-address {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin: 10px 0 16px 70px;
+}
+
+
+.same-address input {
+
+    width: 14px;
+
+    height: 14px;
+
+    accent-color: white;
+
+    cursor: pointer;
+}
+
+
+.same-address label {
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    color: #333;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   UPLOAD SECTION
+========================================= */
+
+.upload-section {
+    margin-top: 30px;
+}
+
+
+/* UPLOAD WHITE BOX */
+
+.upload-box {
+    width: 65%;
+    height: 65px;
+
+    background: #ffffff;
+
+    border-radius: 3px;
+
+    /* IMPORTANT */
+    display: flex !important;
+    flex-direction: row !important;
+
+    align-items: center !important;
+    justify-content: flex-start !important;
+
+    gap: 18px;
+
+    padding: 0 20px;
+
+    cursor: pointer;
+
+    font-size: 16px !important;
+
+    font-weight: 500 !important;
+
+    color: #222;
+
+    margin-bottom: 0 !important;
+}
+
+
+/* SMALL UPLOAD SYMBOL */
+
+.upload-icon {
+    width: 25px;
+    height: 25px;
+
+    border: 1.5px solid #222;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    font-size: 20px;
+
+    font-weight: normal;
+
+    line-height: 1;
+}
+
+
+/* HIDE ACTUAL FILE INPUT */
+
+.hidden {
+    display: none;
+}
+
+
+
+/* =========================================
+   PHOTO
+========================================= */
+
+.photo-section {
+
+    margin-top: 60px;
+}
+
+
+.photo-upload {
+
+    width: 65%;
+
+    height: 115px;
+
+    background: white;
+
+    border-radius: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 90px;
+
+    padding-left: 45px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+
+.camera-icon {
+
+    font-size: 38px;
+}
+
+
+/* =========================================
+   CONFIRM BUTTON
+========================================= */
+
+.confirm-container {
+
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 85px;
+}
+
+
+#confirmButton {
+
+    width: 310px;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #a53636;
+
+    color: white;
+
+    font-size: 22px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+#confirmButton:hover {
+
+    background: #8e2b2b;
+
+    transform: scale(1.02);
+}
+
+
+#confirmButton:active {
+
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media screen and (max-width: 800px) {
+
+    .registration-card {
+
+        width: calc(100% - 30px);
+
+        padding: 50px 45px 35px;
+    }
+
+
+    .gender-container {
+
+        width: 100%;
+    }
+
+
+    .upload-box,
+    .photo-upload {
+
+        width: 75%;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media screen and (max-width: 600px) {
+
+    body {
+
+        padding-top: 15px;
+    }
+
+
+    .top-logo {
+
+        margin-bottom: 15px;
+    }
+
+
+    .top-logo img {
+
+        width: 55px;
+
+        height: 55px;
+    }
+
+
+    .registration-card {
+
+        width: calc(100% - 20px);
+
+        padding: 35px 25px 30px;
+
+        min-height: auto;
+    }
+
+
+    .form-section > label {
+
+        font-size: 14px;
+    }
+
+
+    .form-section > input[type="text"],
+    .form-section > input[type="tel"] {
+
+        height: 38px;
+
+        font-size: 13px;
+    }
+
+
+    .gender-container {
+
+        width: 100%;
+
+        gap: 10px;
+    }
+
+
+    .gender-item input[type="radio"] {
+
+        width: 25px;
+
+        height: 25px;
+    }
+
+
+    .gender-item label {
+
+        font-size: 12px;
+    }
+
+
+    .dob-container {
+
+        margin-left: 20px;
+
+        gap: 8px;
+    }
+
+
+    .dob-container input {
+
+        width: 65px;
+
+        height: 38px;
+    }
+
+
+    .dob-container input:last-child {
+
+        width: 85px;
+    }
+
+
+    .dob-container span {
+
+        font-size: 25px;
+    }
+
+
+    .same-address {
+
+        margin-left: 30px;
+
+        gap: 12px;
+    }
+
+
+    .same-address label {
+
+        font-size: 13px;
+    }
+
+
+    .upload-box,
+    .photo-upload {
+
+        width: 100%;
+    }
+
+
+    .photo-upload {
+
+        gap: 40px;
+
+        padding-left: 25px;
+    }
+
+
+    #confirmButton {
+
+        width: 230px;
+
+        height: 48px;
+
+        font-size: 18px;
+    }
+
+}
+    </style>
+        * {
+</head>
+
+<body>
+
+    <!-- ================= LOGO ================= -->
+    <div class="top-logo">
+        <img src="assets/AUSWAY LOGO 2.png" alt="AUSWAY Logo">
+    </div>
+
+
+    <!-- ================= MAIN CARD ================= -->
+
+    <div class="registration-card">
+
+        <form id="registrationForm">
+
+
+            <!-- ================= FIRST NAME ================= -->
+
+            <div class="form-section">
+
+                <label for="firstName">
+                    First Name
+                </label>
+
+                <input
+                    type="text"
+                    id="firstName"
+                    placeholder="Enter Your First Name"
+                >
+
+            </div>
+
+
+            <!-- ================= LAST NAME ================= -->
+
+            <div class="form-section">
+
+                <label for="lastName">
+                    Last Name
+                </label>
+
+                <input
+                    type="text"
+                    id="lastName"
+                    placeholder="Enter Your Last Name"
+                >
+
+            </div>
+
+
+            <!-- ================= GENDER ================= -->
+
+            <div class="form-section">
+
+                <label>
+                    Gender
+                </label>
+
+                <div class="gender-container">
+
+                    <div class="gender-item">
+
+                        <input
+                            type="radio"
+                            id="male"
+                            name="gender"
+                            value="Male"
+                        >
+
+                        <label for="male">
+                            MALE
+                        </label>
+
+                    </div>
+
+
+                    <div class="gender-item">
+
+                        <input
+                            type="radio"
+                            id="female"
+                            name="gender"
+                            value="Female"
+                        >
+
+                        <label for="female">
+                            FEMALE
+                        </label>
+
+                    </div>
+
+
+                    <div class="gender-item">
+
+                        <input
+                            type="radio"
+                            id="others"
+                            name="gender"
+                            value="Others"
+                        >
+
+                        <label for="others">
+                            OTHERS
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= DATE OF BIRTH ================= -->
+
+            <div class="form-section">
+
+                <label>
+                    Date of Birth
+                </label>
+
+                <div class="dob-container">
+
+                    <input
+                        type="text"
+                        id="dobDay"
+                        placeholder="dd"
+                        maxlength="2"
+                    >
+
+                    <span>/</span>
+
+                    <input
+                        type="text"
+                        id="dobMonth"
+                        placeholder="mm"
+                        maxlength="2"
+                    >
+
+                    <span>/</span>
+
+                    <input
+                        type="text"
+                        id="dobYear"
+                        placeholder="yyyy"
+                        maxlength="4"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= EMERGENCY CONTACT ================= -->
+
+            <div class="form-section emergency-section">
+
+                <label for="emergencyContact">
+                    Emergency contact
+                </label>
+
+                <input
+                    type="tel"
+                    id="emergencyContact"
+                    placeholder="Enter emergency contact"
+                    maxlength="10"
+                >
+
+            </div>
+
+
+            <!-- ================= CURRENT ADDRESS ================= -->
+
+            <div class="form-section">
+
+                <label>
+                    Current Address
+                </label>
+
+                <input
+                    type="text"
+                    id="currentStreet"
+                    placeholder="Enter your House or Building No. / Street Name"
+                >
+
+                <input
+                    type="text"
+                    id="currentCity"
+                    placeholder="Enter your Area / City"
+                >
+
+                <input
+                    type="text"
+                    id="currentPin"
+                    placeholder="Enter Pin Code"
+                    maxlength="6"
+                >
+
+            </div>
+
+
+            <!-- ================= PERMANENT ADDRESS ================= -->
+
+            <div class="form-section permanent-section">
+
+                <label>
+                    Permanent Address
+                </label>
+
+
+                <div class="same-address">
+
+                    <input
+                        type="checkbox"
+                        id="sameAddress"
+                    >
+
+                    <label for="sameAddress">
+                        Same as current address
+                    </label>
+
+                </div>
+
+
+                <input
+                    type="text"
+                    id="permanentStreet"
+                    placeholder="Enter your House or Building No. / Street Name"
+                >
+
+                <input
+                    type="text"
+                    id="permanentCity"
+                    placeholder="Enter your Area / City"
+                >
+
+                <input
+                    type="text"
+                    id="permanentPin"
+                    placeholder="Enter Pin Code"
+                    maxlength="6"
+                >
+
+            </div>
+
+
+            <!-- ================= AADHAR ================= -->
+
+            <div class="form-section upload-section">
+
+                <label>
+                    Aadhar
+                </label>
+
+                <label
+                    class="upload-box"
+                    for="aadhar"
+                >
+
+                    <span class="upload-icon">
+                        ⇧
+                    </span>
+
+                    <span id="aadharText">
+                        Upload Aadhar
+                    </span>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="aadhar"
+                    class="hidden-file"
+                    accept=".jpg,.jpeg,.png,.pdf"
+                >
+
+            </div>
+
+
+            <!-- ================= SHOP LICENSE ================= -->
+
+            <div class="form-section upload-section">
+
+                <label>
+                    Shop License
+                </label>
+
+                <label
+                    class="upload-box"
+                    for="shopLicense"
+                >
+
+                    <span class="upload-icon">
+                        ⇧
+                    </span>
+
+                    <span id="licenseText">
+                        Upload License
+                    </span>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="shopLicense"
+                    class="hidden-file"
+                    accept=".jpg,.jpeg,.png,.pdf"
+                >
+
+            </div>
+
+
+            <!-- ================= PHOTO ================= -->
+
+            <div class="form-section photo-section">
+
+                <label>
+                    Photo
+                </label>
+
+                <label
+                    class="photo-upload"
+                    for="photo"
+                    id="photoBox"
+                >
+
+                    <span class="camera-icon">
+                        📷
+                    </span>
+
+                    <span id="photoText">
+                        Click a current picture
+                    </span>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="photo"
+                    class="hidden-file"
+                    accept="image/*"
+                    capture="user"
+                >
+
+            </div>
+
+
+            <!-- ================= CONFIRM BUTTON ================= -->
+
+            <div class="confirm-container">
+
+                <button
+                    type="submit"
+                    id="confirmButton"
+                >
+                    CONFIRM
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+    <script>
+        // ========================================
+// SAME AS CURRENT ADDRESS
+// ========================================
+
+const sameAddress =
+    document.getElementById("sameAddress");
+
+sameAddress.addEventListener("change", function () {
+
+    const currentStreet =
+        document.getElementById("currentStreet");
+
+    const currentCity =
+        document.getElementById("currentCity");
+
+    const currentPin =
+        document.getElementById("currentPin");
+
+
+    const permanentStreet =
+        document.getElementById("permanentStreet");
+
+    const permanentCity =
+        document.getElementById("permanentCity");
+
+    const permanentPin =
+        document.getElementById("permanentPin");
+
+
+    if (this.checked) {
+
+        permanentStreet.value =
+            currentStreet.value;
+
+        permanentCity.value =
+            currentCity.value;
+
+        permanentPin.value =
+            currentPin.value;
+
+
+        permanentStreet.readOnly = true;
+
+        permanentCity.readOnly = true;
+
+        permanentPin.readOnly = true;
+
+    } else {
+
+        permanentStreet.value = "";
+
+        permanentCity.value = "";
+
+        permanentPin.value = "";
+
+
+        permanentStreet.readOnly = false;
+
+        permanentCity.readOnly = false;
+
+        permanentPin.readOnly = false;
+    }
+
+});
+
+
+// ========================================
+// FILE NAME - AADHAR
+// ========================================
+
+const aadhar =
+    document.getElementById("aadhar");
+
+aadhar.addEventListener("change", function () {
+
+    const text =
+        document.getElementById("aadharText");
+
+    if (this.files.length > 0) {
+
+        text.textContent =
+            this.files[0].name;
+    }
+
+});
+
+
+// ========================================
+// FILE NAME - SHOP LICENSE
+// ========================================
+
+const license =
+    document.getElementById("shopLicense");
+
+license.addEventListener("change", function () {
+
+    const text =
+        document.getElementById("licenseText");
+
+    if (this.files.length > 0) {
+
+        text.textContent =
+            this.files[0].name;
+    }
+
+});
+
+
+// ========================================
+// PHOTO PREVIEW
+// ========================================
+
+const photo =
+    document.getElementById("photo");
+
+photo.addEventListener("change", function () {
+
+    if (this.files.length === 0) {
+        return;
+    }
+
+
+    const file = this.files[0];
+
+
+    if (!file.type.startsWith("image/")) {
+
+        alert("Please select an image file.");
+
+        return;
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload = function (event) {
+
+        const photoBox =
+            document.getElementById("photoBox");
+
+        photoBox.style.backgroundImage =
+            `url("${event.target.result}")`;
+
+        photoBox.style.backgroundSize =
+            "cover";
+
+        photoBox.style.backgroundPosition =
+            "center";
+
+
+        const photoText =
+            document.getElementById("photoText");
+
+        photoText.textContent =
+            "Photo selected";
+    };
+
+
+    reader.readAsDataURL(file);
+
+});
+
+
+// ========================================
+// PIN CODE - NUMBERS ONLY
+// ========================================
+
+document
+    .getElementById("currentPin")
+    .addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+document
+    .getElementById("permanentPin")
+    .addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+// ========================================
+// EMERGENCY CONTACT - NUMBERS ONLY
+// ========================================
+
+document
+    .getElementById("emergencyContact")
+    .addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+// ========================================
+// DATE OF BIRTH - NUMBERS ONLY
+// ========================================
+
+document
+    .getElementById("dobDay")
+    .addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+document
+    .getElementById("dobMonth")
+    .addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+document
+    .getElementById("dobYear")
+    .addEventListener("input", function () {
+
+        this.value =
+            this.value.replace(/\D/g, "");
+
+    });
+
+
+// ========================================
+// FORM SUBMIT
+// ========================================
+
+const form =
+    document.getElementById("registrationForm");
+
+
+form.addEventListener("submit", function (event) {
+
+    event.preventDefault();
+
+
+    const firstName =
+        document.getElementById("firstName").value.trim();
+
+
+    const lastName =
+        document.getElementById("lastName").value.trim();
+
+
+    const emergency =
+        document
+            .getElementById("emergencyContact")
+            .value.trim();
+
+
+    const aadharFile =
+        document.getElementById("aadhar").files.length;
+
+
+    const licenseFile =
+        document.getElementById("shopLicense").files.length;
+
+
+    const photoFile =
+        document.getElementById("photo").files.length;
+
+
+    // First Name validation
+
+    if (firstName === "") {
+
+        alert("Please enter your First Name.");
+
+        document
+            .getElementById("firstName")
+            .focus();
+
+        return;
+    }
+
+
+    // Last Name validation
+
+    if (lastName === "") {
+
+        alert("Please enter your Last Name.");
+
+        document
+            .getElementById("lastName")
+            .focus();
+
+        return;
+    }
+
+
+    // Emergency contact
+
+    if (
+        emergency !== "" &&
+        emergency.length !== 10
+    ) {
+
+        alert(
+            "Please enter a valid 10-digit emergency contact."
+        );
+
+        return;
+    }
+
+
+    // Aadhar
+
+    if (!aadharFile) {
+
+        alert("Please upload your Aadhar.");
+
+        return;
+    }
+
+
+    // License
+
+    if (!licenseFile) {
+
+        alert("Please upload your Shop License.");
+
+        return;
+    }
+
+
+    // Photo
+
+    if (!photoFile) {
+
+        alert("Please upload your photo.");
+
+        return;
+    }
+
+    console.log(
+        "Pharmacy registration completed."
+    );
+    window.location.href = "dashboard.html";
+
+});
+    </script>
+
+</body>
+
+</html>

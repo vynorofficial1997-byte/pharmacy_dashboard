@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AUSWAY – Settings</title>
+<style>
+:root{--header:#9E2D2F;--accent:#C52F35;--panel:#FBE3E4;--active:#F7CFD2;--bg:#fff;--text:#111;--muted:#777;--line:#EBC9CB;--r:14px}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:Roboto,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);font-size:15px;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body.large{font-size:17px}body.compact .row{padding:8px 0}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--text);outline-offset:2px}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+header{background:var(--header);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(12px,3.5vw,66px);color:#fff}
+.logo{font-weight:700;font-size:26px;letter-spacing:.5px}
+.logo{display:flex;align-items:center;gap:8px}
+.logo-img{height:40px;width:auto;max-width:120px;object-fit:contain;font-size:11px;line-height:1.1}
+.hr{display:flex;align-items:center;gap:22px;position:relative}
+.user{background:#fff;color:var(--text);border:0;border-radius:30px;height:44px;padding:0 14px 0 12px;display:flex;align-items:center;gap:14px;font-size:14px}
+.user .i{color:var(--accent)}
+.gear{background:none;border:0;color:#fff;padding:4px;border-radius:50%;display:grid}
+.menu{position:absolute;top:52px;right:44px;background:#fff;color:var(--text);border-radius:12px;box-shadow:0 6px 20px #0003;min-width:180px;padding:6px;z-index:20}
+.menu[hidden]{display:none}
+.menu button{display:block;width:100%;text-align:left;background:none;border:0;padding:10px 12px;border-radius:8px}
+.menu button:hover{background:var(--panel)}
+main{padding:0 clamp(12px,3.5vw,66px) 24px;max-width:1920px;margin:0 auto}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 8px;flex-wrap:wrap}
+.top h1{margin:0;font-size:22px;font-weight:700}
+.back{display:flex;align-items:center;gap:20px}
+.back button{background:none;border:0;padding:4px;border-radius:6px;display:grid}
+.sbox{background:var(--panel);border-radius:var(--r);padding:8px 16px;flex:1;max-width:765px;position:relative}
+.sbox label{display:flex;align-items:center;gap:10px;background:#fff;border-radius:20px;height:36px;padding:0 14px;box-shadow:0 1px 3px #0001}
+.sbox .i{width:18px;height:18px;color:#555}
+.sbox input{border:0;outline:0;flex:1;font:inherit;font-size:12px;background:none;min-width:0}
+.sbox label:focus-within{outline:3px solid var(--text)}
+.res{position:absolute;left:16px;right:16px;top:50px;background:#fff;border-radius:12px;box-shadow:0 6px 20px #0003;z-index:10;padding:6px;max-height:300px;overflow:auto}
+.res[hidden]{display:none}
+.res button{display:flex;flex-direction:column;width:100%;text-align:left;background:none;border:0;padding:8px 12px;border-radius:8px}
+.res button:hover,.res button:focus-visible{background:var(--panel)}
+.res small{color:var(--muted)}
+.layout{display:grid;grid-template-columns:minmax(220px,30%) 1fr;gap:10px;align-items:start}
+.card{background:var(--panel);border-radius:var(--r);min-height:660px}
+nav.side{padding:14px 10px}
+nav.side button{display:flex;align-items:center;gap:20px;width:100%;height:44px;padding:0 22px;margin:0 0 9px;background:none;border:0;border-left:3px solid transparent;border-radius:8px;color:var(--text);text-align:left;font-size:15px}
+nav.side button .i{color:var(--accent)}
+nav.side button:hover{background:#f9d9db}
+nav.side button[aria-selected=true]{background:var(--active);color:var(--accent);border-left-color:var(--accent)}
+.panel{padding:16px 18px}
+.panel[hidden]{display:none}
+.panel h2{margin:0 0 12px;font-size:20px}
+.row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row.hit{animation:hit 1.8s}
+@keyframes hit{0%,60%{background:#f4b9bd}100%{background:transparent}}
+.ic{width:46px;height:46px;border-radius:50%;background:#fdf1f2;color:var(--accent);display:grid;place-items:center;flex:none}
+.tx{flex:1;min-width:0}
+.tx b{font-weight:400;font-size:16px;display:block}
+.tx span{color:var(--muted);font-size:13px}
+.sw{width:54px;height:30px;border-radius:15px;border:0;background:#c9c9c9;position:relative;flex:none;transition:background .15s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .15s}
+.sw[aria-checked=true]{background:var(--accent)}
+.sw[aria-checked=true]::after{transform:translateX(24px)}
+.btn{background:#fff;color:var(--accent);border:1px solid var(--accent);border-radius:8px;padding:0 16px;height:44px;min-width:155px;font-size:14px}
+.btn:hover{background:#fff5f5}
+.btn.fill{background:var(--accent);color:#fff}
+.btn.fill:hover{background:#b02a30}
+.form{display:grid;gap:12px;max-width:520px;padding:6px 0}
+.form label{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.form input,.form select{height:42px;border:1px solid var(--line);border-radius:8px;padding:0 12px;font:inherit;color:var(--text);background:#fff}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.faq details{background:#fff;border-radius:10px;margin:0 0 8px;padding:12px 14px}
+.faq summary{cursor:pointer;font-weight:500}
+.faq p{margin:8px 0 0;color:var(--muted)}
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{height:38px;padding:0 14px;border-radius:8px;border:1px solid var(--accent);background:#fff;color:var(--accent)}
+.seg button[aria-pressed=true]{background:var(--accent);color:#fff}
+dialog{border:0;border-radius:var(--r);padding:22px;max-width:min(420px,92vw);box-shadow:0 10px 40px #0005}
+dialog::backdrop{background:#0006}
+dialog h3{margin:0 0 8px}dialog p{color:#444;margin:0 0 12px}
+dialog input{width:100%;height:42px;border:1px solid var(--line);border-radius:8px;padding:0 12px;font:inherit;margin-bottom:14px}
+#toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--text);color:#fff;padding:11px 18px;border-radius:10px;font-size:14px;max-width:92vw;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50}
+#toast.on{opacity:1}
+@media(max-width:820px){
+ .layout{grid-template-columns:1fr}
+ .card{min-height:0}
+ nav.side{display:flex;overflow-x:auto;gap:6px;padding:10px}
+ nav.side button{width:auto;margin:0;white-space:nowrap;padding:0 14px;gap:10px;border-left:0;border-bottom:3px solid transparent}
+ nav.side button[aria-selected=true]{border-bottom-color:var(--accent)}
+ .hr{gap:8px}.menu{right:0}.user span{display:none}.user{gap:6px}
+ .row{flex-wrap:wrap}.btn{min-width:120px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></symbol>
+<symbol id="shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/><circle cx="12" cy="15.5" r="1"/></symbol>
+<symbol id="monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+<symbol id="help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.5 9.5a2.5 2.5 0 115 0c0 1.7-2.5 2-2.5 4M12 17.5v.01"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 4 6.5 4 10s-1 7-4 10c-3-3-4-6.5-4-10s1-7 4-10z"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path d="M12 4v11M7 11l5 5 5-5M4 20h16"/></symbol>
+<symbol id="trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></symbol>
+<symbol id="back" viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></symbol>
+<symbol id="chev" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 01-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 010-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 014 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 010 4h-.1a1.7 1.7 0 00-1.5 1z"/></symbol>
+<symbol id="key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M16 7l3 3"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+</svg>
+
+<header>
+  <div class="logo"><img class="logo-img" src="assets\AUSWAY LOGO 2.png" alt="AUSWAY Logo">AUSWAY</div>
+  <div class="hr">
+    <button class="user" id="userBtn" aria-haspopup="menu" aria-expanded="false"><svg class="i"><use href="#user"/></svg><span id="uname">Full Name</span><svg class="i"><use href="#chev"/></svg></button>
+    <button class="gear" id="gearBtn" aria-label="Open settings"><svg class="i" style="width:28px;height:28px"><use href="#gear"/></svg></button>
+    <div class="menu" id="menu" role="menu" hidden>
+      <button role="menuitem" data-go="account">My account</button>
+      <button role="menuitem" data-go="security">Security</button>
+      <button role="menuitem" data-go="help">Help &amp; Support</button>
+      <button role="menuitem" id="signout">Sign out</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="top">
+    <div class="back"><button id="backBtn" aria-label="Go back"><svg class="i" style="width:24px;height:24px"><use href="#back"/></svg></button><h1>Settings</h1></div>
+    <div class="sbox">
+      <label><svg class="i"><use href="#search"/></svg><input id="q" type="search" placeholder="Search settings" aria-label="Search settings" autocomplete="off"></label>
+      <div class="res" id="res" hidden></div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="card side" role="tablist" aria-orientation="vertical" aria-label="Settings sections" id="tabs">
+      <button role="tab" data-p="account" id="t-account"><svg class="i"><use href="#user"/></svg>Account</button>
+      <button role="tab" data-p="security" id="t-security"><svg class="i"><use href="#shield"/></svg>Security</button>
+      <button role="tab" data-p="privacy" id="t-privacy"><svg class="i"><use href="#lock"/></svg>Privacy</button>
+      <button role="tab" data-p="appearance" id="t-appearance"><svg class="i"><use href="#monitor"/></svg>Appearance</button>
+      <button role="tab" data-p="help" id="t-help"><svg class="i"><use href="#help"/></svg>Help &amp; Support</button>
+    </nav>
+
+    <section class="card">
+      <div class="panel" id="p-account" role="tabpanel" aria-labelledby="t-account" hidden>
+        <h2>Account Settings</h2>
+        <form class="form row" id="accForm" data-k="Profile details" style="display:grid;border:0">
+          <label>Full name<input id="fName" value="Full Name" required></label>
+          <label>Email<input id="fMail" type="email" value="user@example.com" required></label>
+          <label>Phone<input id="fPhone" type="tel" value=""></label>
+          <label>Language<select id="fLang"><option>English</option><option>தமிழ்</option><option>हिन्दी</option></select></label>
+          <div class="acts"><button class="btn fill" type="submit">Save</button><button class="btn" type="button" id="accCancel">Cancel</button></div>
+        </form>
+      </div>
+
+      <div class="panel" id="p-security" role="tabpanel" aria-labelledby="t-security" hidden>
+        <h2>Security Settings</h2>
+        <div class="row" data-k="Two-factor authentication"><div class="ic"><svg class="i"><use href="#shield"/></svg></div><div class="tx"><b id="l-2fa">Two-Factor Authentication</b><span>Require a code when signing in (preference only)</span></div><button class="sw" role="switch" aria-labelledby="l-2fa" data-t="2fa"></button></div>
+        <div class="row" data-k="Login alerts"><div class="ic"><svg class="i"><use href="#mail"/></svg></div><div class="tx"><b id="l-alert">Login Alerts</b><span>Get notified of new sign-ins</span></div><button class="sw" role="switch" aria-labelledby="l-alert" data-t="alerts"></button></div>
+        <div class="row" data-k="Change password"><div class="ic"><svg class="i"><use href="#key"/></svg></div><div class="tx"><b>Change Password</b><span>Use at least 8 characters</span></div><button class="btn" id="pwOpen">Change</button></div>
+        <form class="form" id="pwForm" hidden>
+          <label>Current password<input type="password" id="pw0" autocomplete="current-password" required></label>
+          <label>New password<input type="password" id="pw1" minlength="8" autocomplete="new-password" required></label>
+          <label>Confirm new password<input type="password" id="pw2" autocomplete="new-password" required></label>
+          <div class="acts"><button class="btn fill" type="submit">Save</button><button class="btn" type="button" id="pwCancel">Cancel</button></div>
+        </form>
+      </div>
+
+      <div class="panel" id="p-privacy" role="tabpanel" aria-labelledby="t-privacy" hidden>
+        <h2>Privacy Settings</h2>
+        <div class="row" data-k="Profile visibility"><div class="ic"><svg class="i"><use href="#globe"/></svg></div><div class="tx"><b id="l-vis">Profile Visibility</b><span>Allow other users to view your profile</span></div><button class="sw" role="switch" aria-labelledby="l-vis" data-t="visibility"></button></div>
+        <div class="row" data-k="Location sharing"><div class="ic"><svg class="i"><use href="#pin"/></svg></div><div class="tx"><b id="l-loc">Location Sharing</b><span>Allow location access for better service</span></div><button class="sw" role="switch" aria-labelledby="l-loc" data-t="location"></button></div>
+        <div class="row" data-k="Personal data usage"><div class="ic"><svg class="i"><use href="#doc"/></svg></div><div class="tx"><b id="l-data">Personal Data Usage</b><span>Allow us to use your data to improve services</span></div><button class="sw" role="switch" aria-labelledby="l-data" data-t="dataUsage"></button></div>
+        <div class="row" data-k="Data download"><div class="ic"><svg class="i"><use href="#dl"/></svg></div><div class="tx"><b>Data Download</b><span>Download a copy of your personal data</span></div><button class="btn" id="dlBtn">Download</button></div>
+        <div class="row" data-k="Delete account"><div class="ic"><svg class="i"><use href="#trash"/></svg></div><div class="tx"><b>Delete Account</b><span>Permanently delete your account and all data</span></div><button class="btn" id="delBtn">Delete Account</button></div>
+      </div>
+
+      <div class="panel" id="p-appearance" role="tabpanel" aria-labelledby="t-appearance" hidden>
+        <h2>Appearance</h2>
+        <div class="row" data-k="Text size"><div class="ic"><svg class="i"><use href="#monitor"/></svg></div><div class="tx"><b>Text Size</b><span>Adjust how large text appears</span></div><div class="seg" data-seg="size"><button data-v="normal">Normal</button><button data-v="large">Large</button></div></div>
+        <div class="row" data-k="Compact layout"><div class="ic"><svg class="i"><use href="#doc"/></svg></div><div class="tx"><b id="l-cmp">Compact Layout</b><span>Reduce spacing between rows</span></div><button class="sw" role="switch" aria-labelledby="l-cmp" data-t="compact"></button></div>
+        <div class="row"><div class="acts"><button class="btn" id="resetApp">Reset to defaults</button></div></div>
+      </div>
+
+      <div class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
+        <h2>Help &amp; Support</h2>
+        <div class="faq" data-k="FAQ frequently asked questions">
+          <details><summary>How do I download my data?</summary><p>Go to Privacy and press Download to get a JSON copy of your settings.</p></details>
+          <details><summary>How do I change my password?</summary><p>Open Security and press Change next to Change Password.</p></details>
+          <details><summary>Can I undo deleting my account?</summary><p>No. Deletion is permanent once processed by the server.</p></details>
+          <details><summary>Who can see my profile?</summary><p>Turn Profile Visibility on or off in Privacy.</p></details>
+        </div>
+        <div class="row" data-k="Contact support email"><div class="ic"><svg class="i"><use href="#mail"/></svg></div><div class="tx"><b>Contact Support</b><span>Opens your email app</span></div><a class="btn" style="display:grid;place-items:center;text-decoration:none" href="mailto:support@ausway.example?subject=AUSWAY%20support">Email us</a></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<dialog id="delDlg" aria-labelledby="dt">
+  <form method="dialog" id="delForm">
+    <h3 id="dt">Delete your account?</h3>
+    <p>This is permanent. Type <b>DELETE</b> to confirm.</p>
+    <input id="delIn" autocomplete="off" aria-label="Type DELETE to confirm">
+    <div class="acts"><button class="btn fill" id="delOk" value="ok" disabled>Delete Account</button><button class="btn" value="cancel">Cancel</button></div>
+  </form>
+</dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const D={visibility:true,location:false,dataUsage:true,"2fa":false,alerts:true,compact:false,size:"normal",name:"Full Name",email:"user@example.com",phone:"",lang:"English"};
+let S={...D};
+try{Object.assign(S,JSON.parse(localStorage.getItem("ausway-settings")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("ausway-settings",JSON.stringify(S))}catch(e){}};
+let tt;const toast=m=>{const t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("on"),3200)};
+
+function show(p,focus){
+  $$("#tabs button").forEach(b=>{const on=b.dataset.p===p;b.setAttribute("aria-selected",on);b.tabIndex=on?0:-1;if(on&&focus)b.focus()});
+  $$(".panel").forEach(x=>x.hidden=x.id!=="p-"+p);
+  try{history.replaceState(null,"","#"+p)}catch(e){}
+}
+$("#tabs").addEventListener("click",e=>{const b=e.target.closest("button");if(b)show(b.dataset.p)});
+$("#tabs").addEventListener("keydown",e=>{
+  const t=$$("#tabs button"),i=t.findIndex(b=>b.getAttribute("aria-selected")==="true");
+  const n={ArrowDown:1,ArrowRight:1,ArrowUp:-1,ArrowLeft:-1}[e.key];
+  if(n){e.preventDefault();show(t[(i+n+t.length)%t.length].dataset.p,true)}
+});
+
+function paint(){
+  $$(".sw").forEach(b=>b.setAttribute("aria-checked",!!S[b.dataset.t]));
+  $$("[data-seg=size] button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===S.size));
+  document.body.classList.toggle("large",S.size==="large");
+  document.body.classList.toggle("compact",!!S.compact);
+  $("#uname").textContent=S.name;$("#fName").value=S.name;$("#fMail").value=S.email;$("#fPhone").value=S.phone;$("#fLang").value=S.lang;
+}
+$$(".sw").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.t;S[k]=!S[k];save();paint();
+  toast(b.getAttribute("aria-labelledby")&&$("#"+b.getAttribute("aria-labelledby")).textContent+": "+(S[k]?"on":"off")+" (saved in this browser only)")}));
+$$("[data-seg=size] button").forEach(b=>b.addEventListener("click",()=>{S.size=b.dataset.v;save();paint()}));
+$("#resetApp").onclick=()=>{S.size=D.size;S.compact=D.compact;save();paint();toast("Appearance reset")};
+
+$("#accForm").addEventListener("submit",e=>{e.preventDefault();
+  Object.assign(S,{name:$("#fName").value.trim()||D.name,email:$("#fMail").value,phone:$("#fPhone").value,lang:$("#fLang").value});save();paint();
+  toast("Saved in this browser only – no server connected")});
+$("#accCancel").onclick=()=>{paint();toast("Changes discarded")};
+
+const pf=$("#pwForm");
+$("#pwOpen").onclick=()=>{pf.hidden=false;$("#pw0").focus()};
+$("#pwCancel").onclick=()=>{pf.reset();pf.hidden=true};
+pf.addEventListener("submit",e=>{e.preventDefault();
+  if($("#pw1").value!==$("#pw2").value){toast("New passwords do not match");return}
+  pf.reset();pf.hidden=true;toast("Password NOT changed – needs a backend to be connected")});
+
+$("#dlBtn").onclick=()=>{
+  const data={exportedAt:new Date().toISOString(),note:"Sample export generated in the browser; no backend connected.",profile:{name:S.name,email:S.email,phone:S.phone,language:S.lang},privacy:{profileVisibility:S.visibility,locationSharing:S.location,personalDataUsage:S.dataUsage},security:{twoFactor:S["2fa"],loginAlerts:S.alerts}};
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
+  a.download="ausway-data.json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast("Sample JSON downloaded (local settings only)")};
+
+const dlg=$("#delDlg"),din=$("#delIn"),dok=$("#delOk");
+$("#delBtn").onclick=()=>{din.value="";dok.disabled=true;dlg.showModal();din.focus()};
+din.oninput=()=>dok.disabled=din.value!=="DELETE";
+$("#delForm").addEventListener("submit",e=>{
+  if(e.submitter&&e.submitter.value==="ok"){
+    ["ausway-settings"].forEach(k=>{try{localStorage.removeItem(k)}catch(x){}});
+    S={...D};paint();toast("Local settings cleared. No server account was deleted – no backend connected.")}});
+
+const um=$("#menu"),ub=$("#userBtn");
+const closeM=()=>{um.hidden=true;ub.setAttribute("aria-expanded","false")};
+ub.onclick=e=>{e.stopPropagation();const o=um.hidden;um.hidden=!o;ub.setAttribute("aria-expanded",o);if(o)um.querySelector("button").focus()};
+document.addEventListener("click",e=>{if(!um.contains(e.target))closeM();if(!$(".sbox").contains(e.target))$("#res").hidden=true});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeM();$("#res").hidden=true}});
+um.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;closeM();if(b.dataset.go)show(b.dataset.go);else toast("Signed out is simulated – no session exists here")});
+$("#gearBtn").onclick=()=>{show("privacy");toast("Settings opened")};
+
+$("#backBtn").onclick=()=>{
+  if(history.length>1&&document.referrer&&new URL(document.referrer).origin===location.origin)history.back();
+  else toast("No previous page – set the back link to your dashboard URL")};
+
+const idx=[];
+$$(".panel").forEach(p=>{const pn=p.id.slice(2);const title=$("#t-"+pn).textContent;
+  p.querySelectorAll("[data-k]").forEach(r=>{const t=r.querySelector("b,summary,h2");idx.push({el:r,panel:pn,title:title,label:r.dataset.k,text:(r.dataset.k+" "+r.textContent).toLowerCase()})})});
+const res=$("#res"),q=$("#q");
+q.addEventListener("input",()=>{
+  const v=q.value.trim().toLowerCase();if(!v){res.hidden=true;return}
+  const m=idx.filter(i=>v.split(/\s+/).every(w=>i.text.includes(w))).slice(0,8);
+  res.innerHTML="";
+  if(!m.length){res.innerHTML="<small style='padding:8px 12px;display:block'>No matching settings</small>"}
+  m.forEach(i=>{const b=document.createElement("button");b.innerHTML="<span></span><small></small>";b.firstChild.textContent=i.label;b.lastChild.textContent="in "+i.title;b.onclick=()=>go(i);res.appendChild(b)});
+  res.hidden=false});
+q.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();const b=res.querySelector("button");if(b)b.click()}});
+function go(i){show(i.panel);res.hidden=true;q.value="";const r=i.el;if(r.tagName==="DETAILS")r.open=true;
+  r.scrollIntoView({block:"center",behavior:"smooth"});r.classList.remove("hit");void r.offsetWidth;r.classList.add("hit");
+  const f=r.querySelector("button,input,a,summary");if(f)f.focus({preventScroll:true})}
+
+paint();
+const h=location.hash.slice(1);show(["account","security","privacy","appearance","help"].includes(h)?h:"privacy");
+})();
+</script>
+</body>
+</html>

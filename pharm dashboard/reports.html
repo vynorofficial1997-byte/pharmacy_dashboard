@@ -1,0 +1,1918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUSWAY - Reports</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --maroon: #993535;
+  --dark-maroon: #7f2929;
+  --pink: #ffe4e4;
+  --soft-pink: #ffe7e7;
+  --text: #414141;
+  --red: #e51d25;
+  --green: #009d2b;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  background: linear-gradient(
+    to bottom,
+    #8f3030 0%,
+    #a83b3b 48%,
+    #e45151 100%
+  );
+}
+
+button,
+input {
+  font: inherit;
+}
+
+/* HEADER */
+
+.topbar {
+  height: 100px;
+  background: #993535;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 28px 0 52px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.brand img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
+.global-search {
+  height: 60px;
+  flex: 1;
+  max-width: 600px;
+  margin: 0 28px;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 34px;
+  box-shadow: 0 2px 5px #70202025;
+}
+
+.global-search svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: #bcbcbc;
+  stroke-width: 2.5;
+  flex-shrink: 0;
+}
+
+.global-search input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  font-size: 16px;
+  color: #444;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.profile {
+  width: 250px;
+  height: 60px;
+  background: #fff;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 17px;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.profile svg {
+  width: 42px;
+  height: 42px;
+  fill: none;
+  stroke: #850000;
+  stroke-width: 1.8;
+}
+
+.profile .chev {
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
+  stroke: #444;
+}
+
+.top-icon,
+.settings-btn {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.top-icon svg {
+  width: 36px;
+  height: 36px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+}
+
+.settings-btn img {
+  width: 42px;
+  height: 42px;
+  display: block;
+  object-fit: contain;
+}
+
+/* LAYOUT */
+
+.layout {
+  display: flex;
+  gap: 21px;
+  padding: 0 19px 8px;
+}
+
+.sidebar {
+  width: 281px;
+  min-height: calc(100vh - 108px);
+  background: #fff;
+  padding: 23px 12px;
+  flex-shrink: 0;
+}
+
+/* SIDEBAR BUTTONS */
+
+.side-btn {
+  width: 100%;
+  height: 80px;
+  margin-bottom: 10px;
+  background: #fff;
+  border: 0;
+  border-top: 1px solid rgba(153, 53, 53, .38);
+  border-bottom: 1px solid rgba(153, 53, 53, .38);
+  border-radius: 11px;
+  box-shadow:
+    inset 1px 0 rgba(153, 53, 53, .04),
+    inset -1px 0 rgba(153, 53, 53, .04);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 30px;
+  color: #993535;
+  font-size: 25px;
+  cursor: pointer;
+  transition: background .18s, color .18s;
+}
+
+.side-btn.active,
+.side-btn:hover {
+  background: #993535;
+  color: #fff;
+}
+
+.side-icon {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: #993535;
+  stroke-width: 1.8;
+  flex-shrink: 0;
+}
+
+.side-btn.active .side-icon,
+.side-btn:hover .side-icon {
+  stroke: #fff;
+}
+
+/* MAIN CONTENT */
+
+.content {
+  flex: 1;
+  min-width: 0;
+  min-height: calc(100vh - 108px);
+  background: #fff;
+  padding: 32px 25px 28px;
+  overflow: hidden;
+}
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin: 0 0 28px 17px;
+}
+
+.page-heading h1 {
+  font-size: 30px;
+}
+
+.date-range {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.date-range svg {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: block;
+  margin: 0;
+  position: relative;
+  top: 0;
+  fill: none;
+  stroke: #a63232;
+  stroke-width: 2;
+}
+
+.date-range .down {
+  font-size: 23px;
+}
+
+/* RATINGS */
+
+.rating-card {
+  width: 280px;
+  height: 150px;
+  background: var(--pink);
+  border-radius: 20px;
+  padding: 15px 23px;
+  margin: 0 0 13px 17px;
+}
+
+.rating-card > p {
+  color: #a63232;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.rating-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3px 0 38px;
+}
+
+.rating-main strong {
+  font-size: 31px;
+  font-weight: 400;
+}
+
+.rating-main svg {
+  width: 49px;
+  height: 49px;
+  fill: none;
+  stroke: #993535;
+  stroke-width: 4;
+}
+
+.rating-growth {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 18px 0 0 17px;
+  font-size: 16px;
+}
+
+.mini-growth {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: #009d2b;
+  stroke-width: 2;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+.rating-growth b {
+  color: #009d2b;
+  font-weight: 400;
+}
+
+.rating-growth span {
+  margin-left: 5px;
+}
+
+/* REPORT TABS */
+
+.report-tabs {
+  height: 80px;
+  background: var(--pink);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 23px;
+  margin: 0 0 8px;
+}
+
+.tab-btn {
+  height: 51px;
+  min-width: 160px;
+  border: 0;
+  border-radius: 21px;
+  background: #fff;
+  color: #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 17px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.tab-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.tab-btn.active {
+  background: #993535;
+  color: #fff;
+}
+
+.export-btn {
+  margin-left: auto;
+  height: 51px;
+  border: 0;
+  border-radius: 20px;
+  background: #993535;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+  font-size: 19px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.export-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* SALES CHART */
+
+.overview-rating-summary {
+  display: none;
+}
+
+.chart-card {
+  width: min(100%, 760px);
+  margin: 0 auto 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 12px rgba(151, 53, 53, .11);
+  padding: 16px 20px 13px;
+}
+
+.sales-chart-card {
+  width: min(100%, 500px);
+  padding: 13px 14px 12px;
+}
+
+.chart-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.chart-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.chart-icon {
+  width: 29px;
+  height: 29px;
+  background: #ffe5e5;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.chart-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: #d71920;
+  stroke-width: 1.8;
+}
+
+.chart-title h2 {
+  font-size: 15px;
+  color: #a51224;
+  margin-bottom: 2px;
+}
+
+.chart-title p {
+  font-size: 10px;
+  color: #777;
+}
+
+.chart-period {
+  height: 34px;
+  border: 1px solid #ff5656;
+  border-radius: 8px;
+  background: #fff;
+  color: #a70000;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 9px;
+  font-size: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.chart-period svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: #bd0000;
+  stroke-width: 1.8;
+}
+
+.chart-period span {
+  font-size: 18px;
+}
+
+.overview-rating-summary {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #ffe4e4;
+  border-radius: 8px;
+}
+
+.small-metric {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.metric-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #ffe3e3;
+  color: #b30000;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small-metric div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.small-metric small {
+  font-size: 9px;
+}
+
+.small-metric strong {
+  font-size: 15px;
+  color: #c90015;
+}
+
+.growth-metric {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  border-left: 1px solid #ffe0e0;
+  padding-left: 10px;
+}
+
+.growth-metric span {
+  font-size: 10px;
+  color: #009d2b;
+  font-weight: bold;
+}
+
+.growth-metric small {
+  font-size: 9px;
+}
+
+.sales-chart-layout {
+  position: relative;
+}
+
+.line-chart-wrap {
+  width: 100%;
+  position: relative;
+}
+
+.chart-legend {
+  position: absolute;
+  right: 5px;
+  top: 8px;
+  font-size: 9px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 1;
+}
+
+.legend-line {
+  width: 14px;
+  height: 2px;
+  background: #e9000b;
+  display: inline-block;
+  position: relative;
+}
+
+.legend-line:after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border: 1px solid #e9000b;
+  border-radius: 50%;
+  position: absolute;
+  left: 5px;
+  top: -2px;
+}
+
+.line-chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid-lines path {
+  fill: none;
+  stroke: #ffe1e1;
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+
+.y-labels text,
+.x-labels text,
+.point-labels text,
+.inventory-y-ticks text {
+  font-family: Arial, sans-serif;
+  fill: #555;
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.point-labels text {
+  fill: #b90000;
+  font-weight: bold;
+  font-size: 9px;
+}
+
+.area {
+  fill: url(#salesFill);
+}
+
+.sales-line {
+  fill: none;
+  stroke: #e9000b;
+  stroke-width: 2;
+}
+
+.points circle {
+  fill: #fff;
+  stroke: #e9000b;
+  stroke-width: 2;
+}
+
+/* SALES SUMMARY */
+
+.sales-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff8f8;
+  border: 1px solid #ffe8e8;
+  border-radius: 7px;
+  margin-top: 6px;
+  padding: 7px 4px;
+}
+
+.sales-summary > div {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 6px;
+  align-items: center;
+  padding: 0 4px;
+  border-right: 1px solid #ffe0e0;
+}
+
+.sales-summary > div:last-child {
+  border-right: 0;
+}
+
+.summary-icon {
+  grid-row: 1 / 3;
+  width: 24px;
+  height: 24px;
+  background: #ffe0e0;
+  color: #e5222a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.sales-summary small {
+  font-size: 8px;
+  white-space: nowrap;
+}
+
+.sales-summary strong {
+  font-size: 12px;
+  color: #d00015;
+  white-space: nowrap;
+}
+
+/* TABLES */
+
+.data-table-card {
+  background: var(--pink);
+  border-radius: 20px;
+  margin: 10px -6px 0;
+  padding: 22px 40px 20px;
+  overflow: hidden;
+}
+
+.data-table-card h2 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 0 0 16px;
+}
+
+.data-table {
+  width: 100%;
+}
+
+.data-row {
+  min-height: 57px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr .9fr .8fr;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid #b9a3a3;
+  font-size: 16px;
+}
+
+.data-row:last-child {
+  border-bottom: 0;
+}
+
+.data-row span:first-child {
+  text-align: left;
+  padding-left: 42px;
+}
+
+.data-head {
+  height: 47px;
+  min-height: 47px;
+  font-size: 20px;
+}
+
+.data-head span:first-child {
+  padding-left: 26px;
+}
+
+/* ORDERS CHART */
+
+.orders-chart-card {
+  width: min(100%, 740px);
+  padding: 17px 20px 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.orders-chart-card .chart-heading,
+.inventory-chart-card .chart-heading {
+  margin-bottom: 17px;
+}
+
+.orders-chart-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr .66fr;
+  gap: 14px;
+  align-items: center;
+  min-height: 350px;
+}
+
+.donut-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+}
+
+.donut {
+  width: min(100%, 310px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  position: relative;
+  background: conic-gradient(
+    #a92226 0% 64.2%,
+    #ed5559 64.2% 82.7%,
+    #f58f92 82.7% 91.8%,
+    #ffc6c7 91.8% 97.6%,
+    #ffe0e0 97.6% 100%
+  );
+  box-shadow: 0 7px 20px #9b24241c;
+}
+
+.donut:after {
+  content: "";
+  position: absolute;
+  inset: 29%;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.donut-center {
+  position: absolute;
+  z-index: 2;
+  inset: 29%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.donut-center small {
+  font-size: 10px;
+  color: #555;
+}
+
+.donut-center strong {
+  font-size: 27px;
+  color: #c71920;
+}
+
+.donut-center b {
+  font-size: 13px;
+  color: #009d2b;
+}
+
+.slice-label {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.label-64 { right: 19%; bottom: 27%; }
+.label-18 { left: 8%; bottom: 35%; }
+.label-9 { left: 9%; top: 33%; }
+.label-5 { left: 20%; top: 13%; color: #a52a2a; }
+.label-3 { left: 44%; top: 4%; color: #a52a2a; }
+
+.legend-list {
+  display: flex;
+  flex-direction: column;
+  gap: 21px;
+  min-width: 0;
+}
+
+.legend-item {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+}
+
+.legend-item > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.legend-item b {
+  font-size: 11px;
+  font-weight: 500;
+  color: #222;
+  white-space: nowrap;
+}
+
+.legend-item small {
+  font-size: 9px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.legend-item > strong {
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.legend-item em {
+  font-style: normal;
+  background: #ffe6e6;
+  color: #b92b2b;
+  border-radius: 12px;
+  padding: 5px 7px;
+  font-size: 10px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: block;
+}
+
+.dot-1 { background: #a92226; }
+.dot-2 { background: #ed5559; }
+.dot-3 { background: #f58f92; }
+.dot-4 { background: #ffc6c7; }
+.dot-5 { background: #ffe0e0; }
+
+/* KPI CARDS */
+
+.order-kpis {
+  border-left: 1px solid #ffe0e0;
+  padding-left: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.kpi {
+  border: 1px solid #ffe6e6;
+  border-radius: 10px;
+  padding: 11px 8px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  min-height: 98px;
+}
+
+.kpi > span {
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+  background: #ffe5e5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b91c25;
+  font-size: 20px;
+}
+
+.kpi > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.kpi small {
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.kpi strong {
+  font-size: 20px;
+  color: #c90015;
+}
+
+.kpi b {
+  font-size: 12px;
+  color: #009d2b;
+}
+
+.kpi b.green {
+  color: #009d2b;
+}
+
+/* INVENTORY CHART */
+
+.inventory-chart-card {
+  width: min(100%, 700px);
+  padding: 16px 18px 14px;
+  margin-top: 22px;
+  margin-bottom: 10px;
+}
+
+.inventory-total {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  border: 1px solid #ffe4e4;
+  border-radius: 8px;
+  padding: 7px 10px;
+  margin: 0 0 6px 3px;
+}
+
+.inventory-total > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.inventory-total small {
+  font-size: 9px;
+}
+
+.inventory-total strong {
+  font-size: 16px;
+  color: #d00015;
+}
+
+.inventory-change {
+  border-left: 1px solid #ffe1e1;
+  padding-left: 10px;
+  margin-left: 7px;
+}
+
+.inventory-change b {
+  font-size: 11px;
+  color: #df1e2a;
+}
+
+.inventory-chart-layout {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+}
+
+.inventory-y-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 9px;
+  text-align: center;
+  color: #555;
+}
+
+.inventory-line-chart {
+  flex: 1;
+  min-width: 0;
+}
+
+.inventory-line-chart .area {
+  fill: url(#inventoryFill);
+}
+
+.inventory-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: #fff8f8;
+  border: 1px solid #ffe8e8;
+  border-radius: 8px;
+  margin-top: 7px;
+  padding: 9px 6px;
+}
+
+.inventory-summary > div {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 7px;
+  align-items: center;
+  padding: 0 7px;
+  border-right: 1px solid #ffe1e1;
+}
+
+.inventory-summary > div:last-child {
+  border-right: 0;
+}
+
+.inventory-summary > div > span {
+  grid-row: 1 / 3;
+  width: 29px;
+  height: 29px;
+  background: #ffe0e0;
+  color: #d3222a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.inventory-summary small {
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.inventory-summary strong {
+  font-size: 16px;
+  color: #d00015;
+}
+
+.orders-head {
+  grid-template-columns: 1.2fr 1fr 1fr;
+}
+
+.orders-row {
+  grid-template-columns: 1.2fr 1fr 1fr;
+}
+
+.inventory-head,
+.inventory-row {
+  grid-template-columns: 1.4fr 1fr 1fr .8fr;
+}
+
+.inventory-head span:first-child,
+.inventory-row span:first-child {
+  padding-left: 42px;
+}
+
+.side-btn:focus-visible,
+.tab-btn:focus-visible,
+.export-btn:focus-visible {
+  outline: 2px solid #6f1e1e;
+  outline-offset: 2px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1250px) {
+  .topbar {
+    gap: 12px;
+    padding-left: 25px;
+  }
+
+  .global-search {
+    margin: 0 8px;
+  }
+
+  .top-right {
+    gap: 10px;
+  }
+
+  .profile {
+    width: 205px;
+  }
+
+  .sidebar {
+    width: 240px;
+  }
+
+  .tab-btn {
+    min-width: 135px;
+  }
+
+  .orders-chart-layout {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .order-kpis {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-left: 0;
+    border-top: 1px solid #ffe0e0;
+    padding: 12px 0 0;
+  }
+
+  .kpi {
+    min-height: 80px;
+  }
+
+  .donut {
+    width: min(100%, 280px);
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    height: auto;
+    min-height: 100px;
+    flex-wrap: wrap;
+    padding: 14px 20px;
+  }
+
+  .global-search {
+    order: 3;
+    max-width: none;
+    flex-basis: 100%;
+    margin: 0;
+  }
+
+  .layout {
+    gap: 12px;
+  }
+
+  .sidebar {
+    width: 205px;
+    padding: 18px 10px;
+  }
+
+  .side-btn {
+    font-size: 20px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .content {
+    padding: 25px 18px;
+  }
+
+  .report-tabs {
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .tab-btn {
+    min-width: 0;
+    flex: 1;
+    font-size: 16px;
+    padding: 0 9px;
+  }
+
+  .export-btn {
+    font-size: 16px;
+    padding: 0 12px;
+  }
+
+  .data-table-card {
+    padding: 20px;
+  }
+
+  .orders-chart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .legend-list {
+    padding: 12px 5px;
+  }
+
+  .order-kpis {
+    grid-column: auto;
+  }
+
+  .donut {
+    width: min(100%, 310px);
+  }
+}
+
+@media (max-width: 650px) {
+  .layout {
+    flex-direction: column;
+    padding: 0 10px 10px;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .side-btn {
+    margin: 0;
+    height: 60px;
+    font-size: 17px;
+  }
+
+  .content {
+    padding: 22px 12px;
+  }
+
+  .page-heading {
+    margin: 0 0 20px;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .date-range {
+    font-size: 14px;
+    height: 43px;
+  }
+
+  .rating-card {
+    margin-left: 0;
+  }
+
+  .report-tabs {
+    height: auto;
+    min-height: 75px;
+    flex-wrap: wrap;
+    padding: 10px;
+  }
+
+  .tab-btn {
+    flex: 1 1 28%;
+    height: 45px;
+    font-size: 14px;
+  }
+
+  .tab-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .export-btn {
+    flex: 1 1 100%;
+    margin-left: 0;
+    height: 43px;
+  }
+
+  .chart-card,
+  .sales-chart-card,
+  .orders-chart-card,
+  .inventory-chart-card {
+    width: 100%;
+    padding: 12px 9px;
+  }
+
+  .sales-summary,
+  .inventory-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .sales-summary > div,
+  .inventory-summary > div {
+    border-right: 0;
+    padding: 5px;
+    border-bottom: 1px solid #ffe1e1;
+  }
+
+  .orders-chart-layout {
+    gap: 8px;
+  }
+
+  .donut {
+    width: min(100%, 270px);
+  }
+
+  .order-kpis {
+    grid-template-columns: 1fr;
+  }
+
+  .data-table-card {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 18px 12px;
+    overflow-x: auto;
+  }
+
+  .data-table {
+    min-width: 540px;
+  }
+
+  .data-table-card h2 {
+    font-size: 21px;
+  }
+
+  .data-row {
+    font-size: 14px;
+  }
+
+  .data-head {
+    font-size: 16px;
+  }
+
+  .data-row span:first-child,
+  .data-head span:first-child,
+  .inventory-head span:first-child,
+  .inventory-row span:first-child {
+    padding-left: 12px;
+  }
+
+  .legend-item {
+    grid-template-columns: 14px minmax(0, 1fr) auto auto;
+  }
+
+  .legend-item b {
+    white-space: normal;
+  }
+
+  .profile {
+    width: 175px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .profile svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand {
+    font-size: 27px;
+  }
+
+  .brand img {
+    width: 52px;
+    height: 52px;
+  }
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="brand"><img src="assets/AUSWAY LOGO 2.png" alt="AUSWAY"><span>AUSWAY</span></div><div class="top-right"><div class="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="9" r="2.5"/><path d="M7.5 18c.8-2.7 2.4-4 4.5-4s3.7 1.3 4.5 4"/></svg><span>Full Name</span><svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div><button class="top-icon"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-2.5 8-2.5 9h15c0-1-2.5-2-2.5-9M10 21h4"/></svg></button>   <!-- Notification button -->
+        <button class="top-icon"
+                type="button"
+                aria-label="Notifications"
+                title="Notifications"
+                onclick="window.location.href='notifications.html'">
+            <img src="assets/notification.png" alt="Notification">
+        </button>
+<button class="settings-btn" onclick="window.location.href='settings.html'"><img src="assets/settings.png" alt="Settings"></button></div></header>
+
+<div class="layout">
+  <aside class="sidebar">
+
+    <button class="side-btn" data-page="dashboard.html">
+      <svg class="side-icon" viewBox="0 0 24 24">
+        <rect x="4" y="4" width="6" height="6"/>
+        <rect x="14" y="4" width="6" height="6"/>
+        <rect x="4" y="14" width="6" height="6"/>
+        <rect x="14" y="14" width="6" height="6"/>
+      </svg>
+      <span>Dashboard</span>
+    </button>
+
+    <button class="side-btn" data-page="orders.html">
+      <svg class="side-icon" viewBox="0 0 24 24">
+        <path d="M3 5h2l2.2 10.2A2 2 0 0 0 9.1 17h7.7a2 2 0 0 0 1.9-2L21 8H6"/>
+        <circle cx="10" cy="20" r="1.2"/>
+        <circle cx="18" cy="20" r="1.2"/>
+      </svg>
+      <span>Orders</span>
+    </button>
+
+    <button class="side-btn" data-page="inventory.html">
+      <svg class="side-icon" viewBox="0 0 24 24">
+        <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Z"/>
+        <path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>
+      </svg>
+      <span>Inventory</span>
+    </button>
+
+    <button class="side-btn active" data-page="reports.html">
+      <svg class="side-icon" viewBox="0 0 24 24">
+        <path d="M5 20v-8h3v8M10.5 20V7h3v13M16 20V4h3v16" fill="currentColor" stroke="none"/>
+      </svg>
+      <span>Reports</span>
+    </button>
+
+    <button class="side-btn" id="logoutBtn">
+      <svg class="side-icon" viewBox="0 0 24 24">
+        <path d="M10 5H5v14h5M14 8l4 4-4 4M8 12h10"/>
+      </svg>
+      <span>Logout</span>
+    </button>
+
+  </aside>
+
+  <main class="content">
+
+    <div class="page-heading">
+      <h1>Reports</h1>
+      <button class="date-range" id="dateRange">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="5" width="18" height="16" rx="1"/>
+          <path d="M7 3v4M17 3v4M3 10h18"/>
+          <path d="M7 13h2M11 13h2M15 13h2M7 17h2M11 17h2"/>
+        </svg>
+        <span>1 May 2024-30 May 2024</span>
+        <span class="down">⌄</span>
+      </button>
+    </div>
+
+    <section class="rating-card" id="ratingCard">
+      <p>Average Ratings</p>
+      <div class="rating-main">
+        <strong>4.4/5</strong>
+        <svg viewBox="0 0 48 48">
+          <path d="m24 4 6.1 12.4 13.7 2-9.9 9.6 2.3 13.6L24 35.2 11.8 41.6l2.3-13.6-9.9-9.6 13.7-2Z"/>
+        </svg>
+      </div>
+      <div class="rating-growth">
+        <svg class="mini-growth" viewBox="0 0 24 24">
+          <path d="M2 19 7 14l3 3 8-10"/>
+          <path d="M13 7h5v5"/>
+          <path d="M3 11v9h3v-9M9 7v10h3V7M15 12v5h3v-5"/>
+        </svg>
+        <b>+5.9%</b>
+        <span>till April 2024</span>
+      </div>
+    </section>
+
+    <nav class="report-tabs">
+      <button class="tab-btn active" data-tab="overview">
+        <svg viewBox="0 0 24 24">
+          <path d="M4 4h13v16H4zM7 8h7M7 12h5M7 16h4"/>
+          <circle cx="17" cy="17" r="4"/>
+          <path d="m20 20 2 2"/>
+        </svg>
+        Overview
+      </button>
+
+      <button class="tab-btn" data-tab="orders">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="16" rx="1"/>
+          <circle cx="9" cy="10" r="2.2"/>
+          <path d="M5.5 16c.5-2 1.7-3 3.5-3 1.3 0 2.3.6 3 1.8M15 9h3M15 13h3"/>
+        </svg>
+        Orders
+      </button>
+
+      <button class="tab-btn" data-tab="inventory">
+        <svg viewBox="0 0 24 24">
+          <rect x="3" y="4" width="18" height="16" rx="1"/>
+          <circle cx="12" cy="9" r="2.3"/>
+          <path d="M7.5 16c.5-2.2 2-3.3 4.5-3.3s4 1.1 4.5 3.3"/>
+        </svg>
+        Inventory
+      </button>
+
+      <button class="export-btn" id="exportBtn">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 3v12M7 10l5 5 5-5M4 17v4h16v-4"/>
+        </svg>
+        Export Report
+      </button>
+    </nav>
+
+    <!-- OVERVIEW -->
+    <section class="tab-panel active" id="overviewPanel">
+
+      <div class="overview-rating-summary">
+        <div class="small-metric">
+          <span class="metric-icon">₹</span>
+          <div>
+            <small>Total Sales</small>
+            <strong>₹1,84,650</strong>
+          </div>
+        </div>
+        <div class="small-metric growth-metric">
+          <span>↑ +12.4%</span>
+          <small>vs April 2024</small>
+        </div>
+      </div>
+
+      <div class="chart-card sales-chart-card">
+        <div class="chart-heading">
+          <div class="chart-title">
+            <span class="chart-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 19V5M4 19h16M7 15l4-4 3 2 5-7M15 6h4v4"/>
+              </svg>
+            </span>
+            <div>
+              <h2>Total Sales</h2>
+              <p>Overview of pharmacy sales over time</p>
+            </div>
+          </div>
+          <button class="chart-period">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="5" width="18" height="16" rx="1"/>
+              <path d="M7 3v4M17 3v4M3 10h18"/>
+            </svg>
+            This Month <span>⌄</span>
+          </button>
+        </div>
+
+        <div class="sales-chart-layout">
+          <div class="line-chart-wrap">
+            <div class="chart-legend"><span class="legend-line"></span>Sales (₹)</div>
+
+            <svg class="line-chart" viewBox="0 0 620 260" role="img" aria-label="Sales line chart">
+              <defs>
+                <linearGradient id="salesFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff7777" stop-opacity=".42"/>
+                  <stop offset="100%" stop-color="#ff7777" stop-opacity=".04"/>
+                </linearGradient>
+              </defs>
+
+              <g class="grid-lines">
+                <path d="M50 30H600M50 65H600M50 100H600M50 135H600M50 170H600M50 205H600"/>
+              </g>
+
+              <g class="y-labels">
+                <text x="35" y="34">60K</text>
+                <text x="35" y="69">50K</text>
+                <text x="35" y="104">40K</text>
+                <text x="35" y="139">30K</text>
+                <text x="35" y="174">20K</text>
+                <text x="35" y="209">10K</text>
+                <text x="42" y="235">0</text>
+              </g>
+
+              <path class="area" d="M55 192 L140 169 L225 139 L310 111 L395 78 L480 100 L565 57 L565 225 L55 225Z"/>
+              <path class="sales-line" d="M55 192 L140 169 L225 139 L310 111 L395 78 L480 100 L565 57"/>
+
+              <g class="points">
+                <circle cx="55" cy="192" r="4"/>
+                <circle cx="140" cy="169" r="4"/>
+                <circle cx="225" cy="139" r="4"/>
+                <circle cx="310" cy="111" r="4"/>
+                <circle cx="395" cy="78" r="4"/>
+                <circle cx="480" cy="100" r="4"/>
+                <circle cx="565" cy="57" r="4"/>
+              </g>
+
+              <g class="point-labels">
+                <text x="55" y="181">₹18,500</text>
+                <text x="140" y="158">₹24,200</text>
+                <text x="225" y="128">₹32,800</text>
+                <text x="310" y="100">₹41,500</text>
+                <text x="395" y="67">₹52,000</text>
+                <text x="480" y="89">₹43,000</text>
+                <text x="565" y="46">₹52,650</text>
+              </g>
+
+              <g class="x-labels">
+                <text x="55" y="247">01 May</text>
+                <text x="140" y="247">05 May</text>
+                <text x="225" y="247">10 May</text>
+                <text x="310" y="247">15 May</text>
+                <text x="395" y="247">20 May</text>
+                <text x="480" y="247">25 May</text>
+                <text x="565" y="247">31 May</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <div class="sales-summary">
+          <div><span class="summary-icon">▦</span><small>Today's Sales</small><strong>₹6,850</strong></div>
+          <div><span class="summary-icon trend">↗</span><small>This Week</small><strong>₹31,200</strong></div>
+          <div><span class="summary-icon">▥</span><small>This Month</small><strong>₹1,84,650</strong></div>
+          <div><span class="summary-icon">◔</span><small>Average / Day</small><strong>₹5,956</strong></div>
+        </div>
+      </div>
+
+      <section class="data-table-card">
+        <h2>Top Selling Medicines</h2>
+        <div class="data-table">
+          <div class="data-row data-head"><span>Medicines</span><span>Category</span><span>Units Sold</span><span>Sales</span></div>
+          <div class="data-row"><span>Paracetamol</span><span>Tablet</span><span>497</span><span>8,535</span></div>
+          <div class="data-row"><span>cetirizine</span><span>Tablet</span><span>603</span><span>12,353</span></div>
+          <div class="data-row"><span>Amoxicillin</span><span>Capsule</span><span>312</span><span>9,240</span></div>
+          <div class="data-row"><span>Vitamin C</span><span>Tablet</span><span>268</span><span>6,700</span></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ORDERS -->
+    <section class="tab-panel" id="ordersPanel">
+      <div class="chart-card orders-chart-card">
+        <div class="chart-heading">
+          <div class="chart-title">
+            <span class="chart-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h8M8 12h4"/></svg>
+            </span>
+            <div>
+              <h2>Order Status</h2>
+              <p>Overview of pharmacy orders</p>
+            </div>
+          </div>
+          <button class="chart-period">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4M17 3v4M3 10h18"/></svg>
+            This Month <span>⌄</span>
+          </button>
+        </div>
+
+        <div class="orders-chart-layout">
+          <div class="donut-wrap">
+            <div class="donut">
+              <div class="donut-center">
+                <small>Total Orders</small>
+                <strong>1,248</strong>
+                <b>↑ +18.6%</b>
+                <small>vs April 2024</small>
+              </div>
+              <span class="slice-label label-64">64.2%</span>
+              <span class="slice-label label-18">18.5%</span>
+              <span class="slice-label label-9">9.1%</span>
+              <span class="slice-label label-5">5.8%</span>
+              <span class="slice-label label-3">3.0%</span>
+            </div>
+          </div>
+
+          <div class="legend-list">
+            <div class="legend-item"><i class="dot dot-1"></i><div><b>Completed Orders</b><small>Successfully delivered</small></div><strong>802</strong><em>64.2%</em></div>
+            <div class="legend-item"><i class="dot dot-2"></i><div><b>Processing Orders</b><small>Being prepared</small></div><strong>231</strong><em>18.5%</em></div>
+            <div class="legend-item"><i class="dot dot-3"></i><div><b>Out for Delivery</b><small>On the way to customer</small></div><strong>114</strong><em>9.1%</em></div>
+            <div class="legend-item"><i class="dot dot-4"></i><div><b>Cancelled Orders</b><small>Cancelled by customer</small></div><strong>72</strong><em>5.8%</em></div>
+            <div class="legend-item"><i class="dot dot-5"></i><div><b>Pending Orders</b><small>Awaiting confirmation</small></div><strong>38</strong><em>3.0%</em></div>
+          </div>
+
+          <aside class="order-kpis">
+            <div class="kpi"><span>⬡</span><div><small>Average Orders / Day</small><strong>40.3</strong><b>↑ +5.9%</b><small>vs April 2024</small></div></div>
+            <div class="kpi"><span>◷</span><div><small>Average Delivery Time</small><strong>2.4 hrs</strong><b class="green">↓ -12.5%</b><small>vs April 2024</small></div></div>
+            <div class="kpi"><span>₹</span><div><small>Average Order Value</small><strong>₹163.70</strong><b>↑ +5.8%</b><small>vs April 2024</small></div></div>
+          </aside>
+        </div>
+      </div>
+
+      <section class="data-table-card">
+        <h2>Orders</h2>
+        <div class="data-table">
+          <div class="data-row orders-head"><span>ID</span><span>Status</span><span>Percentage</span></div>
+          <div class="data-row orders-row"><span>REN3447</span><span>Completed</span><span>28.7%</span></div>
+          <div class="data-row orders-row"><span>ASD3425</span><span>Cancelled</span><span>15.6%</span></div>
+          <div class="data-row orders-row"><span>ORD1562</span><span>Processing</span><span>18.5%</span></div>
+          <div class="data-row orders-row"><span>ORD2189</span><span>Out for delivery</span><span>9.1%</span></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- INVENTORY -->
+    <section class="tab-panel" id="inventoryPanel">
+      <div class="chart-card inventory-chart-card">
+        <div class="chart-heading">
+          <div class="chart-title">
+            <span class="chart-icon">
+              <svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9Z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/></svg>
+            </span>
+            <div>
+              <h2>Inventory</h2>
+              <p>Overview of inventory count over time</p>
+            </div>
+          </div>
+          <button class="chart-period">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4M17 3v4M3 10h18"/></svg>
+            This Month <span>⌄</span>
+          </button>
+        </div>
+
+        <div class="inventory-total">
+          <span class="metric-icon">⬡</span>
+          <div><small>Total Inventory Items</small><strong>1,520</strong></div>
+          <div class="inventory-change"><b>↓ -6.8%</b><small>vs April 2024</small></div>
+        </div>
+
+        <div class="inventory-chart-layout">
+          <div class="inventory-y-label">Inventory (Items)</div>
+          <svg class="line-chart inventory-line-chart" viewBox="0 0 700 245" role="img" aria-label="Inventory line chart">
+            <defs>
+              <linearGradient id="inventoryFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ff7777" stop-opacity=".42"/>
+                <stop offset="100%" stop-color="#ff7777" stop-opacity=".04"/>
+              </linearGradient>
+            </defs>
+            <g class="grid-lines">
+              <path d="M55 25H680M55 55H680M55 85H680M55 115H680M55 145H680M55 175H680M55 205H680"/>
+            </g>
+            <g class="inventory-y-ticks">
+              <text x="5" y="29">2,100</text><text x="5" y="59">1,800</text>
+              <text x="5" y="89">1,500</text><text x="5" y="119">1,200</text>
+              <text x="5" y="149">900</text><text x="5" y="179">600</text><text x="5" y="209">300</text>
+            </g>
+            <path class="area" d="M70 112 L170 103 L270 91 L370 80 L470 88 L570 99 L665 89 L665 215 L70 215Z"/>
+            <path class="sales-line" d="M70 112 L170 103 L270 91 L370 80 L470 88 L570 99 L665 89"/>
+            <g class="points">
+              <circle cx="70" cy="112" r="4"/><circle cx="170" cy="103" r="4"/>
+              <circle cx="270" cy="91" r="4"/><circle cx="370" cy="80" r="4"/>
+              <circle cx="470" cy="88" r="4"/><circle cx="570" cy="99" r="4"/>
+              <circle cx="665" cy="89" r="4"/>
+            </g>
+            <g class="point-labels">
+              <text x="70" y="101">1,200</text><text x="170" y="92">1,350</text>
+              <text x="270" y="80">1,480</text><text x="370" y="69">1,650</text>
+              <text x="470" y="77">1,540</text><text x="570" y="88">1,420</text>
+              <text x="665" y="78">1,520</text>
+            </g>
+            <g class="x-labels">
+              <text x="70" y="237">01 May</text><text x="170" y="237">05 May</text>
+              <text x="270" y="237">10 May</text><text x="370" y="237">15 May</text>
+              <text x="470" y="237">20 May</text><text x="570" y="237">25 May</text>
+              <text x="665" y="237">31 May</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="inventory-summary">
+          <div><span>⬡</span><small>In Stock</small><strong>1,240</strong></div>
+          <div><span>!</span><small>Low Stock</small><strong>186</strong></div>
+          <div><span>×</span><small>Out of Stock</small><strong>64</strong></div>
+          <div><span>◔</span><small>Average Stock / Item</small><strong>325</strong></div>
+        </div>
+      </div>
+
+      <section class="data-table-card">
+        <h2>Inventory</h2>
+        <div class="data-table">
+          <div class="data-row inventory-head"><span>Medicines</span><span>Category</span><span>Current Stock</span><span>Action</span></div>
+          <div class="data-row inventory-row"><span>Paracetamol</span><span>Tablet</span><span>89</span><span>-----</span></div>
+          <div class="data-row inventory-row"><span>cetirizine</span><span>Tablet</span><span>28</span><span>Restock</span></div>
+          <div class="data-row inventory-row"><span>Amoxicillin</span><span>Tablet</span><span>47</span><span>Restock</span></div>
+          <div class="data-row inventory-row"><span>Vitamin C</span><span>Tablet</span><span>18</span><span>Restock</span></div>
+        </div>
+      </section>
+    </section>
+
+  </main>
+</div>
+
+<script>document.addEventListener("DOMContentLoaded", () => {
+  const tabButtons = document.querySelectorAll(".tab-btn");
+
+  const panels = {
+    overview: document.getElementById("overviewPanel"),
+    orders: document.getElementById("ordersPanel"),
+    inventory: document.getElementById("inventoryPanel")
+  };
+
+  const ratingCard = document.getElementById("ratingCard");
+
+  function showTab(name) {
+    tabButtons.forEach(button => {
+      button.classList.toggle("active", button.dataset.tab === name);
+    });
+
+    Object.entries(panels).forEach(([key, panel]) => {
+      panel.classList.toggle("active", key === name);
+    });
+
+    ratingCard.style.display = name === "overview" ? "block" : "none";
+  }
+
+  // Overview, Orders and Inventory tabs
+  tabButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      showTab(button.dataset.tab);
+    });
+  });
+
+  // Sidebar navigation
+  document.querySelectorAll(".side-btn[data-page]").forEach(button => {
+    button.addEventListener("click", () => {
+      window.location.href = button.dataset.page;
+    });
+  });
+
+  // Logout
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    if (confirm("Do you want to logout?")) {
+      alert("Logged out successfully.");
+    }
+  });
+
+  // Export the active report as CSV
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const activePanel = document.querySelector(".tab-panel.active");
+
+    const rows = [...activePanel.querySelectorAll(".data-row")];
+
+    if (!rows.length) {
+      alert("No report data available to export.");
+      return;
+    }
+
+    const csvRows = rows.map(row => {
+      return [...row.querySelectorAll("span")]
+        .map(cell => `"${cell.innerText.replaceAll('"', '""')}"`)
+        .join(",");
+    });
+
+    const csv = csvRows.join("\r\n");
+    const blob = new Blob(["\uFEFF" + csv], {
+      type: "text/csv;charset=utf-8;"
+    });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download =
+      `ausway-${document.querySelector(".tab-btn.active").dataset.tab}-report.csv`;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    URL.revokeObjectURL(url);
+  });
+
+  // Date range control
+  document.getElementById("dateRange").addEventListener("click", () => {
+    const start = prompt(
+      "Enter report start date (example: 1 May 2024)",
+      "1 May 2024"
+    );
+
+    if (start === null || !start.trim()) return;
+
+    const end = prompt(
+      "Enter report end date (example: 30 May 2024)",
+      "30 May 2024"
+    );
+
+    if (end === null || !end.trim()) return;
+
+    document.querySelector("#dateRange span:nth-of-type(1)").textContent =
+      `${start.trim()}-${end.trim()}`;
+  });
+
+  // Chart period controls
+  document.querySelectorAll(".chart-period").forEach(button => {
+    button.addEventListener("click", () => {
+      const choice = prompt(
+        "Choose period: This Month, Last Month, This Year",
+        "This Month"
+      );
+
+      if (!choice || !choice.trim()) return;
+
+      const svg = button.querySelector("svg");
+
+      button.textContent = "";
+
+      if (svg) {
+        button.appendChild(svg);
+      }
+
+      const label = document.createElement("span");
+      label.className = "period-label";
+      label.textContent = choice.trim();
+
+      const arrow = document.createElement("span");
+      arrow.textContent = "⌄";
+
+      button.appendChild(label);
+      button.appendChild(arrow);
+    });
+  });
+
+  // Initial tab
+  showTab("overview");
+});</script>
+</body>
+</html>

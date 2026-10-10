@@ -1,0 +1,1186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUSWAY - Inventory</title>
+    <style>
+        
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --ausway-red: #993535;
+    --ausway-pink: #ffe4e4;
+    --ausway-green: #009b16;
+    --text-dark: #444;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--ausway-red);
+    color: #222;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 27px 0 52px;
+    background: var(--ausway-red);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    color: white;
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.profile {
+    width: 250px;
+    height: 61px;
+    background: #fff;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 18px;
+}
+
+.profile-icon {
+    width: 43px;
+    height: 43px;
+    flex-shrink: 0;
+}
+
+.profile-name {
+    font-size: 23px;
+    color: #444;
+    flex: 1;
+    white-space: nowrap;
+}
+
+.profile-chevron {
+    width: 14px;
+    height: 14px;
+    border-right: 2.5px solid #444;
+    border-bottom: 2.5px solid #444;
+    transform: rotate(45deg);
+    margin: -7px 5px 0 0;
+    flex-shrink: 0;
+}
+
+.header-icon {
+    width: 38px;
+    height: 42px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.notification-icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+.settings-icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+/* PAGE LAYOUT */
+
+.page {
+    display: flex;
+    align-items: stretch;
+    gap: 22px;
+    padding: 0 17px 8px 20px;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    min-height: calc(100vh - 108px);
+    background: #fff;
+    padding: 45px 18px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.side-item {
+    width: 100%;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    gap: 20px;
+    color: #ae3434;
+    font-size: 25px;
+    text-decoration: none;
+   
+border: none;
+border-bottom: 1px solid #f0dada;
+    background: #fff;
+    
+background:
+    linear-gradient(
+        to right,
+        transparent 0%,
+        #e8bcbc 20%,
+        #d99a9a 50%,
+        #e8bcbc 80%,
+        transparent 100%
+    ) top / 100% 1px no-repeat,
+    linear-gradient(
+        to right,
+        transparent 0%,
+        #e8bcbc 20%,
+        #d99a9a 50%,
+        #e8bcbc 80%,
+        transparent 100%
+    ) bottom / 100% 1px no-repeat,
+    #fff;
+
+    white-space: nowrap;
+}
+
+.side-item.active {
+    background: var(--ausway-red);
+    color: #fff;
+    border-color: var(--ausway-red);
+}
+
+.side-icon {
+    width: 31px;
+    height: 31px;
+    flex-shrink: 0;
+}
+
+.logout-item {
+    color: #800b0b;
+}
+
+/* MAIN CONTENT */
+
+.content {
+    background: #fff;
+    flex: 1;
+    min-width: 0;
+    min-height: calc(100vh - 108px);
+    padding: 30px 27px 37px 23px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.heading {
+    padding-top: 0;
+}
+
+.heading h1 {
+    font-size: 30px;
+    line-height: 36px;
+    color: #444;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.heading p {
+    font-size: 21px;
+    line-height: 26px;
+    color: #444;
+    white-space: nowrap;
+}
+
+/* SEARCH */
+
+.search-area {
+    width: 600px;
+    max-width: 55%;
+    height: 80px;
+    flex-shrink: 1;
+    background: var(--ausway-pink);
+    border-radius: 20px;
+    padding: 14px 11px;
+}
+
+.search-box {
+    height: 51px;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.16);
+}
+
+.search-icon {
+    width: 28px;
+    height: 28px;
+    color: #bdbdbd;
+    flex-shrink: 0;
+    margin-right: 25px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    min-width: 0;
+    color: #555;
+}
+
+.search-box input::placeholder {
+    color: #999;
+}
+
+/* ADD MEDICINE BUTTON */
+
+.add-medicine {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 26px;
+    margin-right: 28px;
+}
+
+.add-medicine button {
+    border: none;
+    background: transparent;
+    color: #ae3434;
+    font-family: inherit;
+    font-size: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* STOCK CARDS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 60px;
+    margin: 22px 11px 33px 13px;
+}
+
+.stat-card {
+    height: 170px;
+    min-width: 0;
+    background: var(--ausway-pink);
+    border-radius: 20px;
+    padding: 15px 20px;
+}
+
+.stat-title {
+    font-size: 24px;
+    line-height: 29px;
+    color: #a83235;
+    margin-bottom: 27px;
+    white-space: nowrap;
+}
+
+.stat-number {
+    font-size: 24px;
+    line-height: 29px;
+    color: #444;
+    margin-left: 10px;
+    margin-bottom: 28px;
+}
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    font-size: 19px;
+    line-height: 24px;
+    margin-left: 2px;
+}
+
+.stat-change.green {
+    color: var(--ausway-green);
+}
+
+.stat-change.red {
+    color: #a83235;
+}
+
+.stock-icon {
+    width: 23px;
+    height: 23px;
+    display: block;
+    flex-shrink: 0;
+}
+
+.percentage {
+    font-size: 19px;
+    flex-shrink: 0;
+}
+
+.stat-caption {
+    color: #444;
+    font-size: 19px;
+}
+
+/* INVENTORY TABLE */
+
+.table-box {
+    background: var(--ausway-pink);
+    border-radius: 20px;
+    min-height: 500px;
+    padding: 10px 24px 0;
+    overflow-x: auto;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.inventory-table th {
+    height: 49px;
+    font-size: 21px;
+    font-weight: 400;
+    color: #444;
+    border-bottom: 1px solid #aaa;
+    text-align: center;
+}
+
+.inventory-table td {
+    height: 69px;
+    font-size: 16px;
+    color: #111;
+    border-bottom: 1px solid #aaa;
+    text-align: center;
+}
+
+.inventory-table th:first-child,
+.inventory-table td:first-child {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.status-in {
+    color: #009b16 !important;
+}
+
+.status-low {
+    color: #ff7600 !important;
+}
+
+.status-out {
+    color: #ad2929 !important;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 240px;
+        min-width: 240px;
+    }
+
+    .stats {
+        gap: 20px;
+    }
+
+    .search-area {
+        width: 450px;
+    }
+
+    .heading p {
+        white-space: normal;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-title {
+        font-size: 21px;
+    }
+
+    .stat-change,
+    .stat-caption,
+    .percentage {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 900px) {
+    .header {
+        padding: 0 18px;
+    }
+
+    .logo-text {
+        font-size: 27px;
+    }
+
+    .header-right {
+        gap: 12px;
+    }
+
+    .profile {
+        width: 190px;
+        gap: 10px;
+    }
+
+    .profile-name {
+        font-size: 18px;
+    }
+
+    .page {
+        padding: 0 10px 8px;
+        gap: 12px;
+    }
+
+    .sidebar {
+        width: 200px;
+        min-width: 200px;
+        padding: 30px 12px;
+    }
+
+    .side-item {
+        font-size: 18px;
+        padding: 0 16px;
+        gap: 12px;
+    }
+
+    .content {
+        padding: 25px 15px;
+    }
+
+    .top-section {
+        flex-direction: column;
+    }
+
+    .search-area {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-top: 22px;
+    }
+
+    .stat-card {
+        height: 155px;
+    }
+
+    .table-box {
+        min-width: 500px;
+    }
+}
+
+/* ADD MEDICINE POPUP */
+.medicine-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.58);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.medicine-modal-overlay.show {
+    display: flex;
+}
+
+.medicine-modal {
+    width: 590px;
+    max-width: 100%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.35);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.medicine-modal-inner {
+    background: #ffe4e4;
+    border-radius: 10px;
+    padding: 25px 17px;
+    color: #222;
+}
+
+.medicine-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 55px;
+}
+
+.medicine-modal-header h2 {
+    font-size: 25px;
+    margin: 0;
+}
+
+.medicine-modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: none;
+    background: transparent;
+    color: #a83235;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.medicine-row {
+    display: grid;
+    grid-template-columns: 1.35fr 65px 1.1fr 1.1fr;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+}
+
+.medicine-field {
+    min-width: 0;
+}
+
+.medicine-field label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+
+.medicine-field input {
+    width: 100%;
+    min-width: 0;
+    height: 43px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background: #fff;
+    padding: 0 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: white;
+    border-radius: 18px;
+    height: 34px;
+    margin-top: 40px;
+}
+
+.quantity-control button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.quantity-value {
+    width: 18px;
+    text-align: center;
+}
+
+.add-another-medicine {
+    border: none;
+    background: transparent;
+    color: #a83235;
+    font-size: 17px;
+    margin: 38px 0;
+    cursor: pointer;
+}
+
+.medicine-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 15px 0 70px;
+}
+
+.medicine-done {
+    display: block;
+    margin: auto;
+    width: 131px;
+    height: 39px;
+    border: none;
+    border-radius: 10px;
+    background: #800b0b;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .medicine-modal {
+        padding: 12px;
+    }
+
+    .medicine-modal-inner {
+        padding: 20px 10px;
+    }
+
+    .medicine-row {
+        grid-template-columns: 1fr 65px;
+    }
+
+    .medicine-field label {
+        margin-bottom: 8px;
+    }
+
+    .quantity-control {
+        margin-top: 25px;
+    }
+
+    .medicine-total {
+        margin-bottom: 35px;
+    }
+}
+
+/* Remove increase/decrease arrows only from Amount fields */
+.medicine-amount::-webkit-inner-spin-button,
+.medicine-amount::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.medicine-amount {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="logo-area">
+
+<div class="logo">
+    <img src="assets\AUSWAY LOGO 2.png" alt="AUSWAY Logo">
+</div>
+
+            
+            <span class="logo-text">AUSWAY</span>
+        </div>
+
+        <div class="header-right">
+            <div class="profile">
+                <svg class="profile-icon" viewBox="0 0 44 44" aria-hidden="true">
+                    <circle cx="22" cy="22" r="18"
+                            fill="none" stroke="#800b0b" stroke-width="3.5"/>
+                    <circle cx="22" cy="16" r="6"
+                            fill="none" stroke="#800b0b" stroke-width="3"/>
+                    <path d="M11 32C12 24 32 24 33 32"
+                          fill="none" stroke="#800b0b" stroke-width="3"
+                          stroke-linecap="round"/>
+                </svg>
+                <span class="profile-name">Full Name</span>
+                <span class="profile-chevron"></span>
+            </div>
+
+            <button class="header-icon notification-icon"
+                    aria-label="Notifications" type="button"
+                    onclick="window.location.href='notifications.html'">
+                <svg viewBox="0 0 36 36" aria-hidden="true">
+                    <path d="M8 27H28L25 23V15C25 10.5 22.5 7 18 7
+                             C13.5 7 11 10.5 11 15V23Z"
+                          fill="none" stroke="currentColor" stroke-width="2.8"
+                          stroke-linejoin="round"/>
+                    <path d="M15 30C16 33 20 33 21 30"
+                          fill="none" stroke="currentColor" stroke-width="2.8"
+                          stroke-linecap="round"/>
+                    <path d="M18 4V7" stroke="currentColor" stroke-width="2.8"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <button class="header-icon settings-icon"
+                    aria-label="Settings" type="button"
+                    onclick="window.location.href='settings.html'">
+                <svg viewBox="0 0 36 36" aria-hidden="true">
+                    <path d="M14 3H22L23.2 7.2C24.2 7.5 25.1 8 25.9 8.6
+                             L30 7.1L33.9 14L30.8 16.9V20L33.9 23
+                             L30 29.8L25.9 28.4C25.1 29 24.2 29.5 23.2 29.8
+                             L22 34H14L12.8 29.8C11.8 29.5 10.9 29 10.1 28.4
+                             L6 29.8L2.1 23L5.2 20V16.9L2.1 14L6 7.1
+                             L10.1 8.6C10.9 8 11.8 7.5 12.8 7.2Z"
+                          transform="translate(0 -0.5) scale(1)"
+                          fill="none" stroke="currentColor" stroke-width="2.5"
+                          stroke-linejoin="round"/>
+                    <circle cx="18" cy="18" r="5.2"
+                            fill="none" stroke="currentColor" stroke-width="2.5"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- PAGE LAYOUT -->
+    <div class="page">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a class="side-item" href="dashboard.html">
+                    <svg class="side-icon" viewBox="0 0 28 28" aria-hidden="true">
+                        <rect x="3" y="3" width="8" height="8"
+                              fill="none" stroke="currentColor" stroke-width="2.5"/>
+                        <rect x="17" y="3" width="8" height="5"
+                              fill="none" stroke="currentColor" stroke-width="2.5"/>
+                        <rect x="17" y="14" width="8" height="11"
+                              fill="none" stroke="currentColor" stroke-width="2.5"/>
+                        <rect x="3" y="17" width="8" height="8"
+                              fill="none" stroke="currentColor" stroke-width="2.5"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+
+                <a class="side-item" href="orders.html">
+                    <svg class="side-icon" viewBox="0 0 28 28" aria-hidden="true">
+                        <path d="M2 4H6L9.5 18H22L26 8H8"
+                              fill="none" stroke="currentColor" stroke-width="2.5"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="11" cy="23" r="2" fill="currentColor"/>
+                        <circle cx="21" cy="23" r="2" fill="currentColor"/>
+                    </svg>
+                    <span>Orders</span>
+                </a>
+
+                <a class="side-item active" href="inventory.html" aria-current="page">
+                    <svg class="side-icon" viewBox="0 0 28 28" aria-hidden="true">
+                        <path d="M14 2L25 8V20L14 26L3 20V8Z"
+                              fill="none" stroke="currentColor" stroke-width="2.5"
+                              stroke-linejoin="round"/>
+                        <path d="M3 8L14 14L25 8M14 14V26M8.5 5L20 11.5"
+                              fill="none" stroke="currentColor" stroke-width="2.2"
+                              stroke-linejoin="round"/>
+                    </svg>
+                    <span>Inventory</span>
+                </a>
+
+                <a class="side-item" href="reports.html">
+                    <svg class="side-icon" viewBox="0 0 28 28" aria-hidden="true">
+                        <rect x="3" y="14" width="5" height="11" fill="currentColor"/>
+                        <rect x="11" y="4" width="5" height="21" fill="currentColor"/>
+                        <rect x="19" y="10" width="5" height="15" fill="currentColor"/>
+                    </svg>
+                    <span>Reports</span>
+                </a>
+
+                <a class="side-item logout-item" href="details.html">
+                    <svg class="side-icon" viewBox="0 0 28 28" aria-hidden="true">
+                        <path d="M12 5H23V23H12M15 14H3M8 9L3 14L8 19"
+                              fill="none" stroke="currentColor" stroke-width="2.2"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- INVENTORY CONTENT -->
+        <main class="content">
+
+            <section class="top-section">
+                <div class="heading">
+                    <h1>Inventory</h1>
+                    <p>Manage your Medicine,Stock &amp; Availability</p>
+                </div>
+
+                <div class="search-area">
+                    <label class="search-box">
+                        <svg class="search-icon" viewBox="0 0 28 28" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7.5"
+                                    fill="none" stroke="currentColor" stroke-width="2.8"/>
+                            <path d="M17 17L24 24"
+                                  stroke="currentColor" stroke-width="2.8"
+                                  stroke-linecap="round"/>
+                        </svg>
+                        <input id="inventorySearch" type="search"
+                               placeholder="Search notifications"
+                               aria-label="Search inventory">
+                    </label>
+                </div>
+            </section>
+
+            <div class="add-medicine">
+                <button type="button">+ Add Medicine</button>
+            </div>
+
+            <!-- STOCK CARDS -->
+            <section class="stats">
+
+                <article class="stat-card">
+                    <div class="stat-title">Total Stocks</div>
+                    <div class="stat-number">1,986</div>
+                    <div class="stat-change green">
+                     
+
+<svg class="stock-icon" viewBox="0 0 32 32" aria-hidden="true">
+    <!-- Stock blocks: restored -->
+    <rect x="2" y="17" width="4" height="10" fill="currentColor"/>
+    <rect x="9" y="11" width="4" height="16" fill="currentColor"/>
+    <rect x="16" y="4" width="4" height="23" fill="currentColor"/>
+
+  
+<!-- Increasing arrow -->
+<path d="M2 24 L10 16 L14 20 L27 7"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+
+<!-- Upward arrow head -->
+<path d="M20 7 H27 V14"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"/>
+
+
+    <!-- Downward arrow head -->
+    <path d="M21 25 H28 V18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+</svg>
+
+
+                        <span class="percentage">+15.6%</span>
+                        <span class="stat-caption">from last months</span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-title">Low Stocks</div>
+                    <div class="stat-number">1,693</div>
+                    <div class="stat-change red">
+                        <svg class="stock-icon" viewBox="0 0 32 32" aria-hidden="true">
+                            <path d="M3 8L11 16L16 12L28 25"
+                                  fill="none" stroke="currentColor" stroke-width="2.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21 25H28V18"
+                                  fill="none" stroke="currentColor" stroke-width="2.5"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="percentage">-7.6%</span>
+                        <span class="stat-caption">from last months</span>
+                    </div>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-title">Out of Stocks</div>
+                    <div class="stat-number">169</div>
+                    <div class="stat-change red">
+                        
+
+<svg class="stock-icon" viewBox="0 0 32 32" aria-hidden="true">
+    <rect x="2" y="17" width="4" height="10" fill="currentColor"/>
+    <rect x="9" y="11" width="4" height="16" fill="currentColor"/>
+    <rect x="16" y="4" width="4" height="23" fill="currentColor"/>
+    <path d="M2 29L10 21L14 24L27 9"
+          fill="none" stroke="currentColor" stroke-width="2.8"
+          stroke-linecap="square" stroke-linejoin="miter"/>
+    <path d="M20 9H27V16"
+          fill="none" stroke="currentColor" stroke-width="2.8"
+          stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>
+
+
+                        <span class="percentage">-4.3%</span>
+                        <span class="stat-caption">from last week</span>
+                    </div>
+                </article>
+
+            </section>
+
+            <!-- INVENTORY TABLE -->
+            <section class="table-box">
+                <table class="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Med name</th>
+                            <th>Category</th>
+                            <th>Batch</th>
+                            <th>Stock</th>
+                            <th>MRP</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Paracetamol</td>
+                            <td>Tablet</td>
+                            <td>B2345</td>
+                            <td>450</td>
+                            <td>₹25</td>
+                            <td class="status-in">In Stock</td>
+                        </tr>
+                        <tr>
+                            <td>Azithromycin</td>
+                            <td>Tablet</td>
+                            <td>A8921</td>
+                            <td>12</td>
+                            <td>₹85</td>
+                            <td class="status-low">Low</td>
+                        </tr>
+                        <tr>
+                            <td>Amoxicillin</td>
+                            <td>Capsule</td>
+                            <td>C1290</td>
+                            <td>0</td>
+                            <td>₹120</td>
+                            <td class="status-out">Out</td>
+                        </tr>
+                        <tr>
+                            <td>Cetirizine</td>
+                            <td>Tablet</td>
+                            <td>B4512</td>
+                            <td>230</td>
+                            <td>₹18</td>
+                            <td class="status-in">In Stock</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("inventorySearch");
+    const tableRows = document.querySelectorAll(
+        ".inventory-table tbody tr"
+    );
+
+    // Search the existing inventory table.
+    // No stock values, cards, or table data are changed.
+    if (searchInput) {
+        searchInput.addEventListener("input", function () {
+            const searchValue = this.value.toLowerCase().trim();
+
+            tableRows.forEach(function (row) {
+                const rowText = row.textContent.toLowerCase();
+                row.style.display = rowText.includes(searchValue)
+                    ? ""
+                    : "none";
+            });
+        });
+    }
+});
+
+    </script>
+    <script>
+        
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("medicineModal");
+    const rowsContainer = document.getElementById("medicineRows");
+    const totalDisplay = document.getElementById("medicineTotal");
+
+    const openButton = document.querySelector(".add-medicine button");
+
+    if (!modal || !rowsContainer || !totalDisplay) return;
+
+    let nextMedicineId = 0;
+
+    function updateTotal() {
+        let total = 0;
+
+        rowsContainer.querySelectorAll(".medicine-row").forEach(row => {
+            const amount = Number(row.querySelector(".medicine-amount").value) || 0;
+            const quantity = Number(row.querySelector(".quantity-value").textContent) || 0;
+            total += amount * quantity;
+        });
+
+        totalDisplay.textContent = "₹" + total.toLocaleString("en-IN");
+    }
+
+    function addMedicineRow() {
+        nextMedicineId++;
+
+        const row = document.createElement("div");
+        row.className = "medicine-row";
+
+        row.innerHTML = `
+            <div class="medicine-field">
+                <label>Medicine ${nextMedicineId}:</label>
+                <input type="text" class="medicine-name"
+                       placeholder="medicine..." aria-label="Medicine name">
+            </div>
+
+            <div class="quantity-control">
+                <button type="button" class="quantity-minus"
+                        aria-label="Decrease quantity">-</button>
+                <span class="quantity-value">5</span>
+                <button type="button" class="quantity-plus"
+                        aria-label="Increase quantity">+</button>
+            </div>
+
+            <div class="medicine-field">
+                <label>Category</label>
+                <input type="text" class="medicine-category"
+                       aria-label="Category">
+            </div>
+
+            <div class="medicine-field">
+                <label>Amount</label>
+                <input type="number" class="medicine-amount"
+                       min="0" step="0.01" placeholder="₹..."
+                       aria-label="Amount per medicine">
+            </div>
+        `;
+
+        row.querySelector(".quantity-minus").addEventListener("click", () => {
+            const value = row.querySelector(".quantity-value");
+            value.textContent = Math.max(1, Number(value.textContent) - 1);
+            updateTotal();
+        });
+
+        row.querySelector(".quantity-plus").addEventListener("click", () => {
+            const value = row.querySelector(".quantity-value");
+            value.textContent = Number(value.textContent) + 1;
+            updateTotal();
+        });
+
+        row.querySelector(".medicine-amount").addEventListener("input", updateTotal);
+
+        rowsContainer.appendChild(row);
+        updateTotal();
+    }
+
+    if (openButton) {
+        openButton.addEventListener("click", function () {
+            rowsContainer.innerHTML = "";
+            nextMedicineId = 0;
+
+            addMedicineRow();
+            addMedicineRow();
+
+            modal.classList.add("show");
+        });
+    }
+
+    document.getElementById("addAnotherMedicine").addEventListener("click", addMedicineRow);
+
+    document.getElementById("closeMedicineModal").addEventListener("click", () => {
+        modal.classList.remove("show");
+    });
+
+    document.getElementById("doneMedicine").addEventListener("click", () => {
+        modal.classList.remove("show");
+    });
+
+    modal.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            modal.classList.remove("show");
+        }
+    });
+});
+
+    </script>
+    
+<div class="medicine-modal-overlay" id="medicineModal">
+    <div class="medicine-modal">
+        <div class="medicine-modal-inner">
+
+            <div class="medicine-modal-header">
+                <h2>Add Medicine</h2>
+                <button class="medicine-modal-close"
+                        id="closeMedicineModal"
+                        type="button"
+                        aria-label="Close">&times;</button>
+            </div>
+
+            <div id="medicineRows"></div>
+
+            <button type="button"
+                    class="add-another-medicine"
+                    id="addAnotherMedicine">
+                + Add Medicine
+            </button>
+
+            <div class="medicine-total">
+                <span>Total:</span>
+                <span id="medicineTotal">₹0</span>
+            </div>
+
+            <button type="button"
+                    class="medicine-done"
+                    id="doneMedicine">
+                Done
+            </button>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
