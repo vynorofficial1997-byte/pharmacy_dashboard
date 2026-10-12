@@ -1,0 +1,25 @@
+/* Notifications page */
+/* ---------- notifications / settings ---------- */
+.nwrap{width:min(1050px,92%);margin:clamp(12px,3.5vh,40px) auto 0;display:flex;flex-direction:column;gap:0;flex:1;min-height:0}
+.ntabs{display:flex;gap:clamp(14px,2.2vw,26px);padding-left:clamp(10px,2vw,30px)}
+.ntabs button{width:clamp(100px,9vw,130px);height:30px;font-size:clamp(16px,1.5vw,21px);color:#1c1b1f;text-align:center;white-space:nowrap;position:relative;transition:transform .2s var(--ease),color .2s}
+.ntabs button:after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:6px;background:#fbdede;border-radius:0 0 8px 8px;transition:background .25s,height .25s}
+.ntabs button:hover{transform:translateY(-2px)}
+.ntabs button.on{color:#b03030}
+.ntabs button.on:after{background:#993535;height:7px}
+.nlist{background:var(--pink);border-radius:30px;padding:8px 22px;min-height:clamp(260px,50vh,449px)}
+.nlist .n{display:grid;grid-template-columns:44px 1fr auto 34px;align-items:center;column-gap:12px;min-height:clamp(56px,8.6vh,69.5px);border-bottom:1px solid #8a8a8a;transition:transform .25s var(--ease)}
+.nlist .n:hover{transform:translateX(5px)}
+.nlist .n:last-of-type{border-bottom:0}
+.nlist .n svg.ni{font-size:30px;color:var(--maroon)}
+.nlist .n b{display:block;font-weight:400;font-size:clamp(15px,1.28vw,17.6px);color:#414141}
+.nlist .n small{display:block;font-size:clamp(13px,1.2vw,16.5px);color:#8a7f7f;margin-top:2px}
+.nlist .n em{font-style:normal;font-size:clamp(13px,1.2vw,16.5px);color:#404040;text-align:right}
+.nlist .n .k{font-size:24px;line-height:0;cursor:default;justify-self:end}
+.nwrap .pager{margin-top:auto;padding-top:14px}
+
+/* design: search bar sits centred under the title */
+.ntop{flex-direction:column;align-items:stretch;gap:0}
+.ntop .sbar{width:min(760px,62%);margin:clamp(16px,4vh,44px) auto 0}
+.nwrap{width:min(1050px,80%);margin-top:clamp(24px,6vh,64px)}
+.nlist{min-height:clamp(300px,52vh,470px)}

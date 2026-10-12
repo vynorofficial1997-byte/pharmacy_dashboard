@@ -1,0 +1,6 @@
+/* Orders page */
+.tbl .dt2{line-height:1.5}
+.tbl .dt2 small{display:block;font-size:.88em;color:#555}
+
+.page{gap:clamp(18px,4.6vh,44px)}
+.lt{flex:none;min-height:0}

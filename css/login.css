@@ -1,0 +1,20 @@
+/* Login page */
+.lgrp{width:min(582px,90%)}
+.login-lbl{display:block;font-size:clamp(17px,1.5vw,22px);font-weight:600;color:#1c1b1f;margin-bottom:10px}
+.login-in{display:block;width:100%;height:clamp(52px,7.4vh,66px);background:#fff;border:0;border-radius:2px;font-size:26px;padding:0 20px;outline:0;color:#404040;letter-spacing:1px;transition:box-shadow .2s}
+.login-in:focus{box-shadow:0 0 0 2px #993535}
+.login-in.err{box-shadow:0 0 0 2px #d40000}
+.below{display:flex;flex-direction:column;align-items:center;gap:clamp(6px,1.4vh,14px);margin-top:clamp(10px,2.4vh,26px);animation:fadeUp .7s var(--ease) .25s backwards}
+.signup-q{color:#fff;font-size:17.6px;font-weight:600}
+.signup-b{width:min(385px,60vw);height:clamp(48px,7vh,72px);border-radius:40px;background:#f0cfcf;color:#404040;font-size:clamp(19px,1.6vw,24px);font-weight:600;display:flex;align-items:center;justify-content:center;
+  transition:transform .25s var(--ease),box-shadow .25s}
+.signup-b:hover{transform:translateY(-3px);box-shadow:0 10px 20px rgba(0,0,0,.28)}
+
+.phrow{display:flex;gap:clamp(6px,.8vw,12px)}
+.cc{flex:none;width:clamp(76px,6.4vw,93px);height:clamp(52px,7.4vh,66px);background:#fff;border:1px solid #e6dada;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:clamp(15px,1.4vw,20px);font-weight:600;color:#7a7a7a}
+.phrow .login-in{flex:1;border:1px solid #e6dada;border-radius:3px;width:auto}
+
+.login-lbl{font-size:clamp(20px,2.08vw,30px);font-weight:700;color:var(--ink);margin-bottom:12px}
+.signup-q{color:var(--auth-pink);font-size:clamp(15px,1.25vw,18px);font-weight:600}
+.signup-b{color:var(--ink);font-size:clamp(20px,1.9vw,27px);font-weight:700}
+.login-in,.phrow .login-in{font-size:24px}

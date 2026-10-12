@@ -1,0 +1,9 @@
+/* Inventory page */
+.inv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.addrow{display:flex;justify-content:flex-end}
+.addl{font-size:clamp(15px,1.4vw,19.8px);color:var(--maroon);padding:4px 8px;transition:transform .2s var(--ease)}
+.addl:hover{transform:translateX(-4px)}
+.addlink{color:var(--maroon);font-size:17.6px;position:absolute;cursor:pointer;transition:transform .2s var(--ease)}
+.addlink:hover{transform:translateX(4px)}
+
+.lt{min-height:clamp(260px,40vh,420px)}

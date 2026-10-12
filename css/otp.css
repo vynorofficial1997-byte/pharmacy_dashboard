@@ -1,0 +1,7 @@
+/* OTP page */
+.otp{display:flex;justify-content:center;gap:clamp(12px,1.4vw,19px);margin-top:clamp(6px,2vh,26px)}
+.otp input{width:clamp(40px,3.2vw,46px);height:clamp(40px,3.2vw,46px);border:0;border-radius:6px;background:#fff;text-align:center;font-size:26px;color:#404040;
+  box-shadow:0 3px 5px rgba(0,0,0,.28);outline:0;transition:box-shadow .2s,transform .2s var(--ease)}
+.otp input:focus{box-shadow:0 0 0 2px #993535;transform:translateY(-3px)}
+.otp input.err{box-shadow:0 0 0 2px #d40000}
+.otp input::placeholder{color:#1c1b1f;opacity:1}

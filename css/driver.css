@@ -1,0 +1,6 @@
+/* Driver management page */
+/* driver */
+#crumb{display:none;font-size:clamp(15px,1.4vw,19px);color:#993535;margin-top:4px}
+
+.page{gap:clamp(18px,4.6vh,44px)}
+.lt{flex:none;min-height:clamp(200px,34vh,360px)}

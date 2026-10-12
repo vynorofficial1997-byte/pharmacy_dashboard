@@ -1,0 +1,5 @@
+/* Dashboard page */
+.dash-t p{font-size:clamp(15px,1.3vw,19px);margin-top:4px;color:#414141}
+.card.link{cursor:pointer}
+.rtbl{flex:1;min-height:260px;background:var(--pink);border-radius:30px;padding:clamp(14px,2.4vh,30px) clamp(14px,1.5vw,22px) 12px;display:flex;flex-direction:column;overflow:hidden}
+.rtbl h3{font-size:clamp(18px,1.6vw,24px);font-weight:600;color:#414141;margin:clamp(2px,1vh,8px) 0 clamp(6px,1.4vh,14px) 4px}
